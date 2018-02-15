@@ -1,0 +1,89 @@
+[class*="col"] { margin-bottom: 20px;
+}
+
+.page {
+    background: rgba(248, 220, 216, .6);
+}
+
+/*header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.logo {
+    position: absolute;
+}*/
+
+.pickup {
+    font-family: "Libre Baskerville";
+    font-weight: 700;
+    text-align: center;
+}
+
+.pickup1 {
+    font-size: 40px;
+    color: rgb(23, 45, 156);
+    padding-top: 30px;
+}
+
+.pickup2 {
+    font-size: 20px;
+    color: rgb(123, 45, 56);
+    padding-top: 10px;
+}
+
+.pickup3 {
+    font-size: 30px;
+    color: rgb(23, 45, 156);
+    padding-top: 20px;
+}
+
+.well {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.section1 {
+    padding-top: 20px;
+}
+
+article {
+    line-height: 30px;
+}
+
+.name {
+    font-family: Montserrat;
+    font-weight: 200;
+    font-size: 14px;
+    border: 1px solid white;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.white {
+    background: white;
+    padding-top: 30px;
+}
+
+#map, #wikipedia {
+    height: 500px;
+    width: 100%;
+}
+
+.frame {
+    padding: 7px;
+    border-radius: 5px;
+    background: rgb(240, 173, 78);
+    text-align: center;
+}
+
+.pad {
+    padding-top: 40px;
+}
+
+.largeIcon {
+    font-size: 175%;
+    padding-top: 5px;
+}

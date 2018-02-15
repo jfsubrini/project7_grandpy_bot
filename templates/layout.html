@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+  	<meta charset="UTF-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="description" content="Use GrandPy Bot to find a place">
+    <meta name="author" content="Jean-François Subrini">
+    <title>GrandPy Bot</title>
+	<!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Bootstrap Social Icon-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-social.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+	<!-- My CSS styles -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+ 	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:700|Libre+Baskerville:700|Montserrat:200|Philosopher:400,700|Playfair+Display:400,400i,700,700i" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Bootstrap class container -->
+	<div class="container page">
+		<!-- Including the _header_footer.html content -->
+		{% include '_header.html' %}
+	</div>
+
+	<!-- Bootstrap class container -->
+	<div class="container page">
+		<!-- Including the home.html content -->
+		{% block main %}{% endblock %}
+	</div>
+
+	<!-- Bootstrap class container -->
+	<div class="container page">
+		<!-- Including the _header_footer.html content -->
+		{% include '_footer.html' %}
+	</div>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- jQuery library -->
+	<script src="code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</body>
+
+</html>
