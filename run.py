@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 from flask import Flask, render_template, url_for
-from google_api import *
+from classes import *
 from mocks import Post
 
 
