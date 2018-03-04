@@ -1,8 +1,9 @@
-### To test the classes.py file ###
+""" To test the classes.py file """
+
+import pytest
 
 from classes import Parser, GoogleMaps, MediaWiki
 import run
-import pytest
 
 
 class TestParser:
@@ -12,44 +13,38 @@ class TestParser:
     #   - Controling the lowercase.
     def test_parsing_lowercase(self):
         """ To test that the parser applies lowercase to all the words. """
-        # with pytest.raises(AssertionError):
-        sentence1 = Parser("Rue Général De Gaulle Paris France")
-        sentence1.parsing = ["rue", "général", "de", "gaulle", "paris", "france"]
-        assert sentence1.parsing == ["rue", "général", "de", "gaulle", "paris", "france"]
+        sentence1 = Parser("Rue Général Leclerc Paris France")
+        assert sentence1.parsing() == ["rue", "général", "leclerc", "paris", "france"]
 
     #   - Controling the punctuation out.
     def test_parsing_punctuation(self):
         """ To test that the parser removes punctuation in the sentence. """
         sentence2 = Parser("26, Rue de l'Appel de Londres !")
-        sentence2.parsing = ["26", "rue", "appel", "londres"]
-        assert sentence2.parsing == ["26", "rue", "appel", "londres"]
+        assert sentence2.parsing() == ["26", "rue", "appel", "londres"]
 
     #   - Controling the stopwords out.
     def test_parsing_stopwords(self):
         """ To test that the parser removes all the stopwords present in the sentence. """
         sentence3 = Parser("Salut GrandPy ! Adresse du Lycée Montaigne à Paris")
-        sentence3.parsing = ["lycée", "montaigne", "paris"]
-        assert sentence3.parsing == ["lycée", "montaigne", "paris"]
+        assert sentence3.parsing() == ["lycée", "montaigne", "paris"]
 
     #   - Controling the whole sentence parsing.
     def test_parsing_total(self):
         """ To test that the parser works all right. """
         sentence4 = Parser("Salut GrandPy ! Comment tu vas ? Je cherche l'adresse d'Openclassrooms ! Merci")
-        sentence4.parsing = ["openclassrooms"]
-        assert sentence4.parsing == ["openclassrooms"]
-
+        assert sentence4.parsing() == ["openclassrooms"]
 
 
 ###########################################################################################@
 
-# class TestGoogleMaps:
-    # """ To test the Google Maps Geocoding API """
+class TestGoogleMaps:
+    """ To test the Google Maps Geocoding API """
 
     # - GoogleMaps :
     #   - Changing the coordinates (latitude & longitude).
-    # def test_http_google_return(monkeypatch):
-        # """ To test ..... """
-        # with pytest.raises(AssertionError):
+    def test_http_google_return(monkeypatch):
+        """ To test ..... """
+        pass
         # results = [{'geometry': {
                             #'location':
                             #{'lat': 50.661248,
@@ -58,11 +53,9 @@ class TestParser:
                     #}]
         # def mockreturn(request):
         #     return response???
-        
+
         # monkeypatch.setattr (???)
         # assert place.coordinates("Lille") == results
-
-
 
 
 ###########################################################################################@
@@ -80,10 +73,9 @@ class TestParser:
         #             }]
         # def mockreturn(request):
         #     return response???
-        
+
         # monkeypatch.setattr (???)
         # assert place.coordinates("???") == results
-
 
 
 ###########################################################################################@

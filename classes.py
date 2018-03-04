@@ -35,7 +35,7 @@ class Parser:
         self.sentence = re.sub(r"[.!,;?\']", " ", self.sentence).split()
         # To remove the stopwords and .!,;' and ? froém the sentence.
         self.sentence = [x for x in self.sentence if x not in stopwords]
-
+        return self.sentence
 
 class GoogleMaps:
     """ Class definition to find the coordinates of the place to find. """
@@ -79,7 +79,7 @@ class MediaWiki:
 
 # address = input("Quel lieu ? : ")
 # place = Parser(address)
-# sentence2 = place.parsing()
+# sentence = place.parsing()
 # gps = GoogleMaps(sentence2)
 # gps.coordinates(sentence2)
 
