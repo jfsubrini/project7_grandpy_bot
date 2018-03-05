@@ -35,30 +35,50 @@ class TestParser:
         assert sentence4.parsing() == ["openclassrooms"]
 
 
-###########################################################################################@
+###########################################################################################
 
 class TestGoogleMaps:
     """ To test the Google Maps Geocoding API """
 
     # - GoogleMaps :
-    #   - Changing the coordinates (latitude & longitude).
+    #   - Query 1.
     def test_http_google_return(monkeypatch):
         """ To test ..... """
-        pass
-        # results = [{'geometry': {
-                            #'location':
-                            #{'lat': 50.661248,
-                             #'lng': 3.1263549}
-                        #}
-                    #}]
-        # def mockreturn(request):
-        #     return response???
+        results = [{'geometry': {
+                            'location':
+                            {'lat': 50.62925,
+                             'lng': 3.057256}
+                        }
+                    }]
+        def mockreturn(request):
+            return response
 
-        # monkeypatch.setattr (???)
-        # assert place.coordinates("Lille") == results
+        monkeypatch.setattr (???)
+        assert place.coordinates("Lille") == results
+
+    #   - Query 2.
+    def test_http_google_return2(self):
+        """ To test a place to find. """
+        query2 = GoogleMaps(["openclassrooms"])
+        assert query2.coordinates()[0] == 48.8747578
+        assert query2.coordinates()[1] == 2.350564700000001
+
+    def test_http_google_return2bis(self):
+        """ To test a place to find. """
+        query2bis = GoogleMaps("openclassrooms")
+        assert query2bis.coordinates()[0] == 48.8747578
+        assert query2bis.coordinates()[1] == 2.350564700000001
+
+    #   - Wrong query.
+    def test_http_google_return3(self):
+        """ To test a direction. """
+        query3 = GoogleMaps(["3", "cours", "somme", "bordeaux"])
+        assert query3.coordinates()[0] == 44.8301329
+        assert query3.coordinates()[1] == -0.5726070000000001
 
 
-###########################################################################################@
+
+###########################################################################################
 
 # class TestMediaWiki:
     """ To test the Media Wiki API """
@@ -78,7 +98,7 @@ class TestGoogleMaps:
         # assert place.coordinates("???") == results
 
 
-###########################################################################################@
+###########################################################################################
 
 # class TestRun:
     """ To test the run.py module """
