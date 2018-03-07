@@ -5,6 +5,8 @@ import pytest
 from classes import Parser, GoogleMaps, MediaWiki
 import run
 
+import requests
+
 
 class TestParser:
     """ To test the parser """
@@ -38,55 +40,89 @@ class TestParser:
 ###########################################################################################
 
 class TestGoogleMaps:
-    """ To test the Google Maps Geocoding API """
+    """ To mock the Google Maps Geocoding API """
 
-    # - GoogleMaps :
+    # - GoogleMaps Mock :
     #   - Query 1.
-    def test_http_google_return(monkeypatch):
-        """ To test ..... """
-        results = [{'geometry': {
-                            'location':
-                            {'lat': 50.62925,
-                             'lng': 3.057256}
-                        }
-                    }]
-        def mockreturn(request):
-            return response
+    # def test_http_google_return(monkeypatch):
+    #     """ To mock the result of a geocoding query """
+    #     results = [{'geometry': {
+    #                         'location':
+    #                         {'lat': 50.62925,
+    #                          'lng': 3.057256}
+    #                     }
+    #                 }]
 
-        monkeypatch.setattr (???)
-        assert place.coordinates("Lille") == results
+    #     def mockreturn(request):
+    #         return results
+
+    #     monkeypatch.setattr(request, 'get', mockreturn)
+    #     assert GoogleMaps.coordinates("lille") == results
+
+    # #   - Query 2.
+    # def test_http_google_return2(monkeypatch):
+    #     """ To mock the result of a geocoding query """
+    #     results = [{'geometry': {
+    #                         'location':
+    #                         {'lat': 50.62925,
+    #                          'lng': 3.057256}
+    #                     }
+    #                 }]
+
+    #     def mockreturn(request):
+    #         return BytesIO(json.dumps(results))
+
+    #     monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+    #     assert GoogleMaps.coordinates("openclassrooms") == results
+
+    # #   - Wrong query.
+    # def test_http_google_return3(monkeypatch):
+    #     """ To mock the result of a geocoding query """
+    #     results = [{'geometry': {
+    #                         'location':
+    #                         {'lat': 44.8301329,
+    #                          'lng': -0.5726070000000001}
+    #                     }
+    #                 }]
+
+    #     def mockreturn(request):
+    #         return BytesIO(json.dumps(results))
+
+    #     monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
+    #     assert GoogleMaps.coordinates("3 cours somme bordeaux") == results
+
+
+    #   - Query 1.
+    def test_http_google_return1(self):
+        """ To test a place to find. """
+        query2 = GoogleMaps("openclassrooms")
+        assert query2.coordinates() == (48.8747578, 2.350564700000001)
+        # assert query2.coordinates("openclassrooms")[1] == 2.350564700000001
 
     #   - Query 2.
     def test_http_google_return2(self):
-        """ To test a place to find. """
-        query2 = GoogleMaps(["openclassrooms"])
-        assert query2.coordinates()[0] == 48.8747578
-        assert query2.coordinates()[1] == 2.350564700000001
-
-    def test_http_google_return2bis(self):
-        """ To test a place to find. """
-        query2bis = GoogleMaps("openclassrooms")
-        assert query2bis.coordinates()[0] == 48.8747578
-        assert query2bis.coordinates()[1] == 2.350564700000001
-
-    #   - Wrong query.
-    def test_http_google_return3(self):
         """ To test a direction. """
-        query3 = GoogleMaps(["3", "cours", "somme", "bordeaux"])
-        assert query3.coordinates()[0] == 44.8301329
-        assert query3.coordinates()[1] == -0.5726070000000001
+        query3 = GoogleMaps("3 cours somme bordeaux")
+        # assert query3.coordinates()[0] == 44.8301329
+        # assert query3.coordinates()[1] == -0.5726070000000001
+        assert query3.coordinates() == (44.8301329, -0.5726070000000001)
 
+	#   - Wrong query.
+    def test_http_google_no_return(self):
+        """ To test no real place. """
+        query3 = GoogleMaps("bbbbbbbb")
+        assert query3.coordinates() == None
 
 
 ###########################################################################################
 
 # class TestMediaWiki:
-    """ To test the Media Wiki API """
+    """ To mock the Media Wiki API """
 
-    # - MediaWiki :
+    # - MediaWiki Mock :
     #   - Charging the right text (first two s) from the right wikipedia page.
     # def test_http_wiki_return(monkeypatch):
-        # """ To test ..... """
+        # """ To mock ..... """
         # with pytest.raises(AssertionError):
         # pass
         # results = [{
@@ -96,6 +132,22 @@ class TestGoogleMaps:
 
         # monkeypatch.setattr (???)
         # assert place.coordinates("???") == results
+
+	#   - History 1.
+    def test_http_wiki_return1(self):
+        """ To test . """
+        place1 = MediaWiki("Nerja")
+        assert place1.history() == "<p><b>Nerja</b> est une ville et une commune de la comarque de La Axarquía, province de Malaga, comm"
+
+	#   - No history.
+    def test_http_wiki_no_return(self):
+        """ To test no real place. """
+        no_place = MediaWiki("aaaa")
+        assert no_place.history() == None
+
+
+
+## pb de sensibilité à la casse
 
 
 ###########################################################################################

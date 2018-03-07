@@ -14,7 +14,7 @@ Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 10/03/201
 # Importation of modules
 import re
 import requests
-# from pprint import pprint
+# from pprint import pprint    ### A VIRER
 # Importation of configuration modules
 from instance.config import GOOGLE_MAPS_KEY_GEOCODING
 from config import *
@@ -40,29 +40,34 @@ class Parser:
 class GoogleMaps:
     """ Class definition to find the coordinates of the place to find. """
 
-    def __init__(self, query, latitude=0, longitude=0):
-        self.query = query
-        self.latitude = latitude
-        self.longitude = longitude
+    def __init__(self, query):
+        self.user_query = query
 
-    def coordinates(self, sentence):
+    def coordinates(self):    # ENLEVER le user_query
         """ Google Maps Geocoding REST API """
-        payload = {'address': sentence, 'key': GOOGLE_MAPS_KEY_GEOCODING}
+        payload = {'address': self.user_query, 'key': GOOGLE_MAPS_KEY_GEOCODING}
         response = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params=payload)
-        # print(response.url)
+        # print(response.url)   ### A VIRER
         google_maps = response.json()
-        # pprint(google_maps)
+        # pprint(google_maps)    ## A VIRER
         status = google_maps['status']
         if status == 'OK':
             latitude = google_maps['results'][0]['geometry']['location']['lat']
             longitude = google_maps['results'][0]['geometry']['location']['lng']
-            data = (latitude, longitude)
-            print("Latitude : ", data[0])
-            print("Longitude : ", data[1])
-            return data[0]
-            return data[1]
-            # return self.latitude
-            # return self.longitude
+            address_num = google_maps['results'][0]['address_components'][0]['short_name']        
+            address_type = google_maps['results'][0]['address_components'][1]['types'][0]
+            address_name = google_maps['results'][0]['address_components'][1]['short_name']
+            # data = (latitude, longitude)
+            # print("Latitude : ", data[0])
+            # print("Longitude : ", data[1])
+            # return data [0]
+            # return data[1]
+            print("Latitude : {}".format(latitude))
+            print("Longitude : {}".format(longitude))
+            print("L'adresse de {} est : {}, {} {}".format(self.user_query, address_num, address_type, address_name))
+            return (latitude, longitude)
+            return address_type
+            return address_name  
         else:
             print("Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez.")
 
@@ -72,35 +77,35 @@ class MediaWiki:
 
     def __init__(self, query):
         """ Initializer / Instance Attributes """
-        self.query = query
+        self.user_query = query
 
     def history(self):
         """ MediaWiki REST API """
-        payload = {'action': 'query', 'titles': self.query, 'prop': 'extracts',\
-        'rvprop': 'content', 'format': 'json', 'formatversion': 2}
+        payload = {'action': 'query', 'titles': self.user_query, 'prop': 'extracts',\
+        'rvprop': 'content', 'redirects': '', 'format': 'json', 'formatversion': 2}
         response = requests.get('https://fr.wikipedia.org/w/api.php', params=payload)
         media_wiki = response.json()
         # pprint(media_wiki)
         try:
-            media_wiki['query']['pages'][0]['missing']
+            media_wiki['query']['pages'][0]['missing'] or media_wiki['query']['pages'][0]['invalid']
         except KeyError:
             # ne garder que le 1er paragraphe
-            first_paragraph = media_wiki['query']['pages'][0]['extract'][0:500]
+            first_paragraph = media_wiki['query']['pages'][0]['extract'][0:100]
             print(first_paragraph)
             return first_paragraph
         else:
             print("Désolé mais GrandPy a oublié l'histoire de ce lieu...")
 
 
-address = input("Quel lieu ? : ")
-place = Parser(address)
-sentence1 = place.parsing()
-gps = GoogleMaps(sentence1)
-gps.coordinates(sentence1)
+# address = input("Quel lieu ? : ")
+# place = Parser(address)
+# sentence1 = place.parsing()
+# gps = GoogleMaps(sentence1)
+# gps.coordinates()
 
-address = input("Qu'est-ce qu'on cherche ducon ? : ")
-query1 = MediaWiki(address)
-MediaWiki.history(query1)
+# # address = input("Qu'est-ce qu'on cherche ducon ? : ")
+# query1 = MediaWiki('Cité Paradis')   #### passer la variable address_name
+# MediaWiki.history(query1)
 
 
 # # To be standalone
