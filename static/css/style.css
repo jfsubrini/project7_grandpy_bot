@@ -1,20 +1,7 @@
-[class*="col"] { margin-bottom: 20px;
-}
+/* TEMPLATES CSS */
 
-.page {
-    background: rgba(248, 220, 216, .6);
-}
 
-/*header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-.logo {
-    position: absolute;
-}*/
+/* HEADER CSS */
 
 .pickup {
     font-family: "Libre Baskerville";
@@ -40,17 +27,127 @@
     padding-top: 20px;
 }
 
+/*header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.logo {
+    position: absolute;
+}*/
+
+
+/* HOME CSS */
+
+[class*="col"] {
+    margin-bottom: 20px;
+}
+
+/* All the messages */
+article {
+    line-height: 30px;
+}
+
+.messagesPage {
+    background: rgba(248, 220, 216, .6);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: Philosopher;
+    font-weight: 400;
+    font-size: 20px;
+    padding : 10px 20px 50px 20px;
+    color: rgb(23, 45, 156);
+}
+
+.textInput {
+    color: rgb(191, 74, 26);
+    display: none;
+}
+
 .well {
     background-color: lightgray;
     padding: 20px;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+/* GrandPy Bot Welcome Message */
+#welcome {
+}
+
+/* GrandPy Bot displaying the address */
+#address {
+    display: none;
+}
+
+/* GrandPy Bot address history with Wikipedia */
+#history {
+    display: none;
+}
+
+/* GrandPy & User's Icons */
+#grandpy, #user {
+    margin-right : 20px;
+    margin-bottom : 10px;   
+}
+
+/* Loader */
+#loader {
+    margin-left: 15%;
+    display: none;
+}
+
+#thinking {
+    font-size: 20px;
+}
+
+/*#form {
+    display:none;
 }
 
 .section1 {
     padding-top: 20px;
 }
+*/
+/*#answer1, #answer2, #answerWikipedia {
+    display: none;
+}
 
-article {
-    line-height: 30px;
+#wikilink {
+    text-decoration: none;
+}*/
+
+/* Input form */
+.pad {
+    padding-top: 40px;
+}
+
+.largeIcon {
+    font-size: 175%;
+    padding-top: 5px;
+}
+
+/* Google Map */
+#map {
+    height: 500px;
+    width: 100%;
+    display: none;
+}
+
+
+/* FOOTER CSS */
+
+.frame {
+    padding: 7px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: rgb(240, 173, 78);
+    text-align: center;
 }
 
 .name {
@@ -59,31 +156,7 @@ article {
     font-size: 14px;
     border: 1px solid white;
     padding: 7px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
-}
-
-.white {
-    background: white;
-    padding-top: 30px;
-}
-
-#map, #wikipedia {
-    height: 500px;
-    width: 100%;
-}
-
-.frame {
-    padding: 7px;
-    border-radius: 5px;
-    background: rgb(240, 173, 78);
-    text-align: center;
-}
-
-.pad {
-    padding-top: 40px;
-}
-
-.largeIcon {
-    font-size: 175%;
-    padding-top: 5px;
 }

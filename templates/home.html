@@ -3,166 +3,74 @@
 {% block main %}
 
 <main>		
-<!--DIALOG AREA-->
-<article class="row">
-	<!--USER'S QUERY MESSAGE-->
-	
-	{% for post in posts %}
-	
-	<h3>affichage du message entré par l'utilisateur {{ post.title }}</h3>
-	<p>{{ post.content }}</p>
+	<!--DIALOG AREA-->
+	<article class="row messagesPage">
+		<!--MESSAGES-->
+		<!--GrandPy Bot Welcome Message-->
+		<p class="well" id="welcome"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" id="grandpy">Salut à toi, ô jeune être en recherche !<br>
+		Mon grand âge m'a donné une longue expérience de la géographie et de l'histoire.<br>
+		Teste donc mes connaissances...</p>
+		<!--User's Input Text-->
+		<p class="textInput well"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="user"></p>
+		<!--GrandPy Bot displaying the address-->
+		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" id="grandpy"></p>
+		<!--GrandPy Bot address history with Wikipedia-->
+		<p class="well" id="history"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" id="grandpy">
+		<!-- <blockquote><abbr title="Wikipedia">Wikipedia</abbr> nous raconte ceci :<br>{{ first_2_sentences }}<small class="pull-right">Wikipedia</small><br></blockquote><a href="https://fr.wikipedia.org/wiki/{{ openclassrooms }}" id="wikilink">- En savoir plus sur Wikipedia.</a> --></p>
 
-	<!--ANIMATED ICON WHEN WAITING FOR THE ANSWER-->
-	<!-- Animated Icons
-	 --><!-- <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
-
-	<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
-
-	<i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
-
-	<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
-
-	<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span> -->
-
-	<!-- <i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i>
-	<span class="sr-only">Refreshing...</span>
-
-	<i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i>
-	<span class="sr-only">Saving. Hang tight!</span> -->
-	<hr>
-	{% endfor %}
-
-	<!--GRANDPY BOT ANSWER-->
-	<h3>Voici la réponse. Voir la carte ci-dessous.</h3>
-	<h3>Je n'ai pas trouvé de réponse spécifique à ta demande. Veuillez préciser.</h3>
-	<hr>
-	
-	<!-- <div class="form-group has-warning has-feedback">
-				<label class="control-label" for="idWarning">Avertissement</label>
-				<input type="text" class="form-control imput-md" id="idWarning" placeholder="Entrez l'adresse à chercher">
-				<span class="glyphicon glyficon-warning-sign form-control-feedback"></span>
-				<span class="help-block">Il y a un problème dans la saisie</span>
-			</div> -->
-<!-- 					<div class="form-group has-success has-feedback">
-				<label class="control-label" for="idSuccess">Réussite</label>
-				<input type="text" class="form-control" id="idSuccess">
-				<span class="glyphicon glyficon-ok form-control-feedback"></span>
-				<span class="help-block">Saisie correcte</span>
-			</div> -->			
-		<!--ADDRESS AREA-->
-		<div class="row">
-			<aside class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 well hidden-xs ">
-				<address>
-					<p>Vous cherchez l'adresse suivante :</p>
-					<strong>Estelle Subrini</strong><br>
-					Calle Aura, 26<br>
-					Torre de Benagalbón<br>
-				</address>
-			</aside>
+		<!--LOADER-->
+		<div class="fa-3x" id="loader">
+		  <i class="fa fa-spinner fa-pulse"></i>
+		  <span id="thinking">Voyons, voyons, laisse-moi réfléchir un peu...</span>
 		</div>
-	
-	<h3>Mais vous pouvez connaître l'histoire du nom de la rue.</h3>
-	<!--WIKIPEDIA LAYOUT-->
-	<article class="col-md-4 col-md-offset-1" id="wikipedia"><p>Voici ce qu'en dit Wikipedia :</p>
-		<blockquote><abbr title="Wikipedia non de Dieu !">Wikipedia</abbr> sdffdsfsfds fsdfdsfdfds fsddfsfdsfds fdsfdsfds fdssdfdfs  fdsdfsfdsds <strong>STRONG</strong> dfsdfsfds dfsdfsdfss dfsdsfdfs dfsdsfdfsdsf dfsdfsdsfdfsdfs dfsdfsdfsdfsdfs <em>emphasis</em> dfs dfsdfsdfs dfsdfsdfsdfs dfsdfsdfsdfs dfsdfs<br><small class="pull-right">Wikipedia</small><br></blockquote>
 	</article>
-</article>
 
-
-<!--INPUT FORM-->
-<section class="row">
-	<form action="blabla.py" method="POST" name="" class="col-md-12 form-inline">
-		<h1><legend class="label label-info section1">Trouvez votre adresse
-		<div class="row">
-			<div class="col-md-9 col-sm-11 input-group pad">
-				<input type="text" class="form-control input-lg" placeholder="Entre le lieu que tu recherches">
-				<span class="input-group-btn">
-					<button type="button" class="btn btn-default input-lg col-md-12 col-sm-12" title="Rechercher"><span class="glyphicon glyphicon-search largeIcon" aria-hidden="true"></span></button>
-				</span>
+	<!--INPUT FORM-->
+	<section class="row">
+		<form class="col-md-12 form-inline">
+			<h1><legend class="label label-info section1">Trouve une adresse
+			<div class="row">
+				<div class="col-md-9 col-sm-11 input-group pad">
+					<input type="text" class="form-control input-lg" placeholder="Entre le lieu que tu recherches">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default input-lg col-md-12 col-sm-12" title="Rechercher" id="submit"><span class="glyphicon glyphicon-search largeIcon" aria-hidden="true"></span></button>
+					</span>
+				</div>
 			</div>
-		</div>
-		</legend></h1>
-	</form>
-</section>
+			</legend></h1>
+		</form>
+	</section>
 
-
-
-<!-- <script>
-	$(function() {
-		$("form").on("submit", function() {
-			if($("input").val().lenght < 4) {
-				$("div.form-group").addClass("has-error");
-				$("div.alert").show("slow").delay(4000).hide("slow");
-				return false;					
-			}
+	<!--IN THE CASE THAT THERE IS NO ADDRESS-->
+	<!-- <div class="form-group has-warning has-feedback">
+		<label class="control-label" for="idWarning">Avertissement</label>
+		<input type="text" class="form-control imput-md" id="idWarning" placeholder="Entrez l'adresse à chercher">
+		<span class="glyphicon glyficon-warning-sign form-control-feedback"></span>
+		<span class="help-block">Il y a un problème dans la saisie</span>
+	</div>
+	<script>
+		$(function() {
+			$("form").on("submit", function() {
+				if($("input").val().lenght < 4) {
+					$("div.form-group").addClass("has-error");
+					$("div.alert").show("slow").delay(4000).hide("slow");
+					return false;					
+				}
+			});
 		});
-	});
-</script>
--->
+	</script>
+	-->		
 
-<!--GOOGLE MAP LAYOUT-->
-<section class="row white">
-	<div class="col-md-12 thumbnail" id="map"></div>
-	    <script>
-	      var lat = 44.8506909;
-	      var lng = -0.5746955;
-	      // var lat = {{ latitude }}
-	      // var lng = {{ longitude }}
-	      function initMap() {
-	        // Create a map object and specify the DOM element for display.
-	        // New map with map options.
-	        // var userPlace = {lat: {{ latitude }}, lng: {{ longitude }} };
-	        var userPlace = {lat: lat, lng: lng };
-	        var map = new google.maps.Map(document.getElementById('map'), {
-	          center: userPlace,
-	          zoom: 17,
-	          mapTypeId: 'terrain',
-	          scaleControl: true,
-	          mapTypeControl: true,
-	          mapTypeControlOptions: {
-	          	style: google.maps.MapTypeControlStyle.DROPDOWN_MENU, mapTypeIds: ['roadmap', 'hybrid'],
-	          }
-	        });
-	        // Add a symbol (circle) as a marker and animation of the marker.
-	     	var marker = new google.maps.Marker({
-	     		position: userPlace,
-	        	map: map,
-	        	animation: google.maps.Animation.DROP,
-	        	icon: {	
-			      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-			      scale: 6
-			    }
-	        	// icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-	     	});
-	     	// Add an info window that pop up when the mouse mover over.
-	     	var infoWindow = new google.maps.InfoWindow({
-	     		content: '<h4>Ici</h4>'
-	     	});
-	     	marker.addListener('mouseover', function(){
-	     		infoWindow.open(map, marker);
-	     	});
-	     }
-	    </script>
-	    <script async defer
-	    src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap">
-	    </script>    <!-- Maps JavaScript API key -->
+	<!--GOOGLE MAP LAYOUT-->
+	<section class="row">
+		<div class="col-md-12 thumbnail" id="map"></div>
 
-</section>
-
-<!-- AIzaSyD5VMFZxtVvCob0mp3zYuuzb80_JPyBSCY
- --><!--J'inclus jQuery via un CDN et version fallback-->
-<!-- <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
- -->
-<!--  <script src="js/jquery-3.2.1.min.js"></script>
- -->
-<!--Script jQuery-->
-<!-- <script src="js/interactionBI.js"></script>
- -->
+		<!--Script JavaScript in the static file and js sub file-->
+		<script src="../static/js/googleAPI.js"></script>
+				
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap">	
+		</script>
+	</section>
 
 </main>
 

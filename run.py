@@ -2,7 +2,6 @@
 
 from flask import Flask, render_template, url_for
 from classes import *
-from mocks import Post
 
 
 app = Flask(__name__, instance_relative_config=True)
@@ -16,8 +15,7 @@ def index():
     # lat = GeoData().coordonates.latitude()
     # lng = GeoData().coordonates.longitude()
     # return render_template("home.html", latitude=lat, longitude=lng)
-    posts = Post.all()
-    return render_template("home.html", posts=posts)
+    return render_template("home.html")
 
 @app.errorhandler(404)
 def page_not_found(error):

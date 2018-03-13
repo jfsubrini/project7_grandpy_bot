@@ -3,47 +3,54 @@
 <html lang="fr">
 
 <head>
-  	<meta charset="UTF-8"> 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name="description" content="Use GrandPy Bot to find a place">
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Utilise GrandPy Bot pour trouver un lieu. Facile avec C.hoo!">
     <meta name="author" content="Jean-François Subrini">
     <title>GrandPy Bot</title>
-	<!-- Bootstrap CDN -->
+    <!-- CDN Bootstrap and Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}"> -->
     <!-- Bootstrap Social Icon-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-social.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
-	<!-- My CSS styles -->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
- 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Droid+Serif:700|Libre+Baskerville:700|Montserrat:200|Philosopher:400,700|Playfair+Display:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-social.css') }}">
+    <!-- My CSS styles -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700|Montserrat:200|Philosopher:400" rel="stylesheet">
 </head>
 
 <body>
 
-	<!-- Bootstrap class container -->
-	<div class="container page">
-		<!-- Including the _header_footer.html content -->
-		{% include '_header.html' %}
-	</div>
+    <!-- Bootstrap class container -->
+    <div class="container">
+        <!-- Including the header content -->
+        {% include '_header.html' %}
+    </div>
 
-	<!-- Bootstrap class container -->
-	<div class="container page">
-		<!-- Including the home.html content -->
-		{% block main %}{% endblock %}
-	</div>
+    <!-- Bootstrap class container -->
+    <div class="container">
+        <!-- Including the home.html content -->
+        {% block main %}{% endblock %}
+    </div>
 
-	<!-- Bootstrap class container -->
-	<div class="container page">
-		<!-- Including the _header_footer.html content -->
-		{% include '_footer.html' %}
-	</div>
+    <!-- Bootstrap class container -->
+    <div class="container">
+        <!-- Including the footer content -->
+        {% include '_footer.html' %}
+    </div>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<!-- jQuery library -->
-	<script src="code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- CDN Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript fallback production version -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- CDN jQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- jQuery fallback 3.2.1 production version-->
+    <script src="../static/js/jquery/jquery-3.2.1.min.js"></script>
+    <!--Script jQuery in the static file and js sub file -->
+    <script src="../static/js/script.js"></script>
 
 </body>
 
