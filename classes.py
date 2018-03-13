@@ -74,10 +74,7 @@ class GoogleMaps:
             # print("Longitude : {}".format(self.longitude))
             # print("L'adresse de {} est : {}".format(self.user_query, self.global_address))
             # print("L'histoire se réfère à : {}".format(self.street_name))
-            return self.latitude
-            return self.longitude
-            return self.global_address
-            return self.street_name
+            return self.latitude, self.longitude, self.global_address, self.street_name
         else:
             # print("Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez.")
             return "Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez."
@@ -112,14 +109,14 @@ class MediaWiki:
             print("Désolé mais GrandPy a oublié l'histoire de ce lieu...")
 
 
-class AnswerLists:
-    """ Constant class with lists of GrandPy Bot messages. """
+class GrandPyMessages:
+    """ Class to display random messages from a list of GrandPy Bot messages. """
 
     # Class attributes : list of possible answers.
-    LISTANSWER1 = ["Et voilà ! L'adresse que tu cherches est :\n",\
+    LISTANSWER = ["Et voilà ! L'adresse que tu cherches est :\n",\
                     "Oh mais c'est très facile ! L'endroit que tu cherches se trouve à cette adresse :\n",\
                     "Rien de plus simple ! L'adresse de ton endroit est :\n"]
-    LISTANSWER2 = ["Désolé mais je n'ai pas compris ta demande.\n"\
+    LISTANOANSWER = ["Désolé mais je n'ai pas compris ta demande.\n"\
                     "Peux-tu reformuler ta requête ?",\
                     "Oh la la ! Je suis un peu confus, vu mon grand âge.\n"\
                     "Tu peux me faire une demande plus claire et directe ?",\
@@ -132,29 +129,26 @@ class AnswerLists:
                     "Je connais très bien ce lieu.\n"\
                     "GrandPy Bot va te conter son histoire..."]
 
-class GrandPyMessages:
-    """ Class to display random messages from GrandPy Bot. """
-
-    def randomAnswer1():
-        randomIndex = random.randint(0, len(AnswerLists.LISTANSWER1) - 1)
-        address_result = AnswerLists.LISTANSWER1[randomIndex]
+    def randomAnswer():
+        """ Random messages where GrandPy Bot gives the address of the place. """
+        address_result = random.choice(GrandPyMessages.LISTANSWER)
         # print(address_result)
         return address_result
 
-    def randomAnswer2():
-        randomIndex = random.randint(0, len(AnswerLists.LISTANSWER2) - 1)
-        no_result = AnswerLists.LISTANSWER2[randomIndex]
+    def randomNoAnswer():
+        """ Random messages when GrandPy Bot didn't understand the user query. """
+        no_result = random.choice(GrandPyMessages.LISTANOANSWER)
         # print(no_result)
         return no_result
 
     def randomWiki():
-        randomIndex = random.randint(0, len(AnswerLists.LISTWIKIPEDIA) - 1)
-        wiki_result = AnswerLists.LISTWIKIPEDIA[randomIndex]
+        """ Random messages where GrandPy Bot tell the story of the address. """
+        wiki_result = random.choice(GrandPyMessages.LISTWIKIPEDIA)
         # print(wiki_result)
         return wiki_result
 
-# GrandPyMessages.randomAnswer1()
-# GrandPyMessages.randomAnswer2()
+# GrandPyMessages.randomAnswer()
+# GrandPyMessages.randomNoAnswer()
 # GrandPyMessages.randomWiki()
 
 

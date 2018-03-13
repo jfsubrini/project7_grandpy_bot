@@ -47,7 +47,7 @@
 
 /* All the messages */
 article {
-    line-height: 30px;
+    line-height: 20px;
 }
 
 .messagesPage {
@@ -62,11 +62,6 @@ article {
     color: rgb(23, 45, 156);
 }
 
-.textInput {
-    color: rgb(191, 74, 26);
-    display: none;
-}
-
 .well {
     background-color: lightgray;
     padding: 20px;
@@ -75,8 +70,10 @@ article {
     margin-bottom: 20px;
 }
 
-/* GrandPy Bot Welcome Message */
-#welcome {
+/* User query message */
+#textUser {
+    color: rgb(191, 74, 26);
+    display: none;
 }
 
 /* GrandPy Bot displaying the address */
@@ -85,12 +82,12 @@ article {
 }
 
 /* GrandPy Bot address history with Wikipedia */
-#history {
+#wikiHistory {
     display: none;
 }
 
 /* GrandPy & User's Icons */
-#grandpy, #user {
+.grandpy, #user {
     margin-right : 20px;
     margin-bottom : 10px;   
 }
@@ -104,22 +101,6 @@ article {
 #thinking {
     font-size: 20px;
 }
-
-/*#form {
-    display:none;
-}
-
-.section1 {
-    padding-top: 20px;
-}
-*/
-/*#answer1, #answer2, #answerWikipedia {
-    display: none;
-}
-
-#wikilink {
-    text-decoration: none;
-}*/
 
 /* Input form */
 .pad {
