@@ -1,3 +1,6 @@
+<!-- Main content for the layout.html file -->
+
+
 {% extends 'layout.html' %}
 
 {% block main %}
@@ -7,15 +10,15 @@
 	<article class="row messagesPage">
 		<!--MESSAGES-->
 		<!--GrandPy Bot Welcome Message-->
-		<p class="well"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpy">Salut à toi, ô jeune être en recherche !<br>
+		<p class="well"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">Salut à toi, ô jeune être en recherche !<br>
 		Mon grand âge m'a donné une longue expérience de la géographie et de l'histoire.<br>
 		Teste donc mes connaissances...</p>
 		<!--User's Input Text-->
-		<p class="well" id="textUser"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="user"></p>
+		<p class="well" id="textUser"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="userPic"></p>
 		<!--GrandPy Bot displaying the address-->
-		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpy"></p>
+		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{{ answer }}</p>
 		<!--GrandPy Bot address history with Wikipedia-->
-		<p class="well" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpy">
+		<p class="well" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{{ wikiStory }}
 		<!-- <blockquote><abbr title="Wikipedia">Wikipedia</abbr> nous raconte ceci :<br>{{ first_2_sentences }}<small class="pull-right">Wikipedia</small><br></blockquote><a href="https://fr.wikipedia.org/wiki/{{ openclassrooms }}" id="wikilink">- En savoir plus sur Wikipedia.</a> --></p>
 
 		<!--LOADER-->

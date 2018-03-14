@@ -3,27 +3,26 @@
 
 /* HEADER CSS */
 
-.pickup {
+.commonCss {
     font-family: "Libre Baskerville";
     font-weight: 700;
     text-align: center;
+    color: rgb(65, 79, 225);
 }
 
-.pickup1 {
+#siteNameBig {
     font-size: 40px;
-    color: rgb(23, 45, 156);
     padding-top: 30px;
 }
 
-.pickup2 {
+#pickupLine {
     font-size: 20px;
-    color: rgb(123, 45, 56);
+    color: rgb(191, 74, 26);
     padding-top: 10px;
 }
 
-.pickup3 {
+#siteNameSmall {
     font-size: 30px;
-    color: rgb(23, 45, 156);
     padding-top: 20px;
 }
 
@@ -51,7 +50,7 @@ article {
 }
 
 .messagesPage {
-    background: rgba(248, 220, 216, .6);
+    background-color: rgba(248, 220, 216, .6);
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -59,7 +58,8 @@ article {
     font-weight: 400;
     font-size: 20px;
     padding : 10px 20px 50px 20px;
-    color: rgb(23, 45, 156);
+    color: rgb(65, 79, 225);
+;
 }
 
 .well {
@@ -87,7 +87,7 @@ article {
 }
 
 /* GrandPy & User's Icons */
-.grandpy, #user {
+.grandpyPic, #userPic {
     margin-right : 20px;
     margin-bottom : 10px;   
 }
@@ -122,16 +122,16 @@ article {
 
 /* FOOTER CSS */
 
-.frame {
+.footerFrame {
     padding: 7px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    background: rgb(240, 173, 78);
+    background-color: rgb(240, 173, 78);
     text-align: center;
 }
 
-.name {
+.myName {
     font-family: Montserrat;
     font-weight: 200;
     font-size: 14px;
@@ -140,4 +140,14 @@ article {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+}
+
+.myName a {
+    text-decoration: none;
+}
+.myName a:hover {
+    color: ivory;
+}
+.myName a:active {
+    color: black;
 }
