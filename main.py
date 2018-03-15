@@ -6,37 +6,38 @@ from classes import *
 
 
 # Instance creation.
-sentence = Parser("Salut GrandPy, je cherche l'adresse d'OpenClassrooms, merci'")
+sentence = Parser("Salut GrandPy, donne moi stp l'adresse du musée Guimet. Merci")
 # Parsing function.
-user_query = sentence.parsing()
+userQuery = sentence.parsing()
 
 # Instance creation.
-google_api = GoogleMaps(user_query)
+google_api = GoogleMaps(userQuery)
 # Google Maps coordinates function...
-# to find latitude (lat).
-lat = google_api.coordinates()[0]
-# to find longitude (lng).
-lng = google_api.coordinates()[1]
+# to find latitude.
+latitude = google_api.coordinates()[0]
+# to find longitude.
+longitude = google_api.coordinates()[1]
 # to find the global address.
-global_address = google_api.coordinates()[2]
+globalAddress = google_api.coordinates()[2]
 
-street_name = google_api.coordinates()[3]   ### A VIRER
+streetName = google_api.coordinates()[3]   ### A VIRER
 
-print("La latitude est : {}".format(lat)) # A VIRER
-print("La longitude est : {}".format(lng)) # A VIRER
+# print("La latitude est : {}".format(latitude)) # A VIRER
+# print("La longitude est : {}".format(longitude)) # A VIRER
 
 # Instance creation.
-wiki_api = MediaWiki(street_name)   # A CHANGER L'ARGUMENT : PLUTOT LAT ET LNG
+wiki_api = MediaWiki(latitude, longitude)   # A CHANGER L'ARGUMENT : PLUTOT LAT ET LNG
 # Wikipedia history function.
-first_2_sentences = wiki_api.history()
+wikiExtract = wiki_api.history()
 
 # GrandPy Answers.
-answer = GrandPyMessages.randomAnswer()
+addressAnswer = GrandPyMessages.randomAnswer()
 noAnswer = GrandPyMessages.randomNoAnswer()
-wikiStory = GrandPyMessages.randomWiki()
+storyAnswer = GrandPyMessages.randomStory()
 
-if global_address != None:   ## A REVOIR
-    print(answer, global_address)
-    print(wikiStory, first_2_sentences)
+if globalAddress != None:   ## A REVOIR
+    print(addressAnswer, globalAddress)
+    print(storyAnswer, wikiExtract)
 else:
     print(noAnswer)
+

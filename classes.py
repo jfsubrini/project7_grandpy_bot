@@ -55,13 +55,11 @@ class GoogleMaps:
         self.latitude = float
         self.longitude = float
         self.global_address = str
-        self.street_name = str   ## A VIRER
     
     def coordinates(self):
         """ Google Maps Geocoding REST API """
         payload = {'address': self.user_query, 'key': GOOGLE_MAPS_KEY_GEOCODING}
         response = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params=payload)
-        # print(response.url)   ### A VIRER
         google_maps = response.json()
         # pprint(google_maps)     ### A VIRER
         status = google_maps['status']
@@ -70,33 +68,31 @@ class GoogleMaps:
             self.longitude = google_maps['results'][0]['geometry']['location']['lng']
             self.global_address = google_maps['results'][0]['formatted_address']
             self.street_name = google_maps['results'][0]['address_components'][1]['short_name']  #A VIRER
-            # print("Latitude : {}".format(self.latitude))
-            # print("Longitude : {}".format(self.longitude))
-            # print("L'adresse de {} est : {}".format(self.user_query, self.global_address))
-            # print("L'histoire se réfère à : {}".format(self.street_name))
             return self.latitude, self.longitude, self.global_address, self.street_name # A VIRER LE DERNIER
         else:
-            # print("Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez.")
             return "Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez."
 
 
 class MediaWiki:
-    """ Class definition to find the history of the address of the place to find,
-    taking the 2 first sentences on Wikipedia for the 'street' name.
+    """ Class definition to find the story of the nearby landmark the user wanted
+    to find, passing latitude and longitude coordinates to MediaWiki and returning
+    the 2 first sentences of the first paragraph extract of the Wikipedia page.
     """
 
-    def __init__(self, wikiquery):
+    def __init__(self, latitude, longitude):
         """ Initializer / Instance Attributes """
-        self.keywords = wikiquery.title()
+        self.latitude = latitude
+        self.longitude = longitude
 
     def history(self):
-        """ MediaWiki REST API """
-        payload = {'action': 'query', 'titles': self.keywords, 'prop': 'extracts',\
-        'explaintext': True, 'exsentences': 2, 'exlimit': 1, 'redirects': True, 'format': 'json',\
-        'formatversion': 2}
+        """ MediaWiki REST API """  
+        coord = '{}|{}'.format(self.latitude, self.longitude)
+        payload = {'action': 'query', 'generator': 'geosearch', 'ggsradius':100, \
+        'ggscoord': coord, 'prop': 'extracts', 'explaintext': True, 'exsentences': 2, \
+        'exlimit': 1, 'redirects': True, 'format': 'json', 'formatversion': 2}
         response = requests.get('https://fr.wikipedia.org/w/api.php', params=payload)
         media_wiki = response.json()
-        # pprint(media_wiki)
+        # pprint(media_wiki)    ### A VIRER
         try:
             media_wiki['query']['pages'][0]['missing'] or media_wiki['query']['pages'][0]['invalid']
         except KeyError:
@@ -131,18 +127,18 @@ class GrandPyMessages:
 
     def randomAnswer():
         """ Random messages where GrandPy Bot gives the address of the place. """
-        address_result = random.choice(GrandPyMessages.LISTANSWER)
+        address_answer = random.choice(GrandPyMessages.LISTANSWER)
         # print(address_result)
-        return address_result
+        return address_answer
 
     def randomNoAnswer():
         """ Random messages when GrandPy Bot didn't understand the user query. """
-        no_result = random.choice(GrandPyMessages.LISTANOANSWER)
+        no_answer = random.choice(GrandPyMessages.LISTANOANSWER)
         # print(no_result)
-        return no_result
+        return no_answer
 
-    def randomWiki():
+    def randomStory():
         """ Random messages where GrandPy Bot tell the story of the address. """
-        wiki_result = random.choice(GrandPyMessages.LISTWIKIPEDIA)
+        story_answer = random.choice(GrandPyMessages.LISTWIKIPEDIA)
         # print(wiki_result)
-        return wiki_result
+        return story_answer
