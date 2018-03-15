@@ -55,8 +55,8 @@ class GoogleMaps:
         self.latitude = float
         self.longitude = float
         self.global_address = str
-        self.street_name = str
-
+        self.street_name = str   ## A VIRER
+    
     def coordinates(self):
         """ Google Maps Geocoding REST API """
         payload = {'address': self.user_query, 'key': GOOGLE_MAPS_KEY_GEOCODING}
@@ -69,12 +69,12 @@ class GoogleMaps:
             self.latitude = google_maps['results'][0]['geometry']['location']['lat']
             self.longitude = google_maps['results'][0]['geometry']['location']['lng']
             self.global_address = google_maps['results'][0]['formatted_address']
-            self.street_name = google_maps['results'][0]['address_components'][1]['short_name']
+            self.street_name = google_maps['results'][0]['address_components'][1]['short_name']  #A VIRER
             # print("Latitude : {}".format(self.latitude))
             # print("Longitude : {}".format(self.longitude))
             # print("L'adresse de {} est : {}".format(self.user_query, self.global_address))
             # print("L'histoire se réfère à : {}".format(self.street_name))
-            return self.latitude, self.longitude, self.global_address, self.street_name
+            return self.latitude, self.longitude, self.global_address, self.street_name # A VIRER LE DERNIER
         else:
             # print("Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez.")
             return "Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez."
@@ -102,11 +102,11 @@ class MediaWiki:
         except KeyError:
             # Return the first two sentences of the intro in the extracts,
             # in plain text (see payload).
-            first_paragraph = media_wiki['query']['pages'][0]['extract']
-            print(first_paragraph)
-            return first_paragraph
+            first_2_sentences = media_wiki['query']['pages'][0]['extract']
+            # print(first_2_sentences)
+            return first_2_sentences
         else:
-            print("Désolé mais GrandPy a oublié l'histoire de ce lieu...")
+            return "Désolé mais GrandPy a oublié l'histoire de ce lieu..."
 
 
 class GrandPyMessages:
@@ -146,22 +146,3 @@ class GrandPyMessages:
         wiki_result = random.choice(GrandPyMessages.LISTWIKIPEDIA)
         # print(wiki_result)
         return wiki_result
-
-# GrandPyMessages.randomAnswer()
-# GrandPyMessages.randomNoAnswer()
-# GrandPyMessages.randomWiki()
-
-
-# sentence = input("Quel lieu ? : ")
-# sentence2 = Parser(sentence).parsing()
-# print(sentence2)
-# google = GoogleMaps(sentence2).coordinates()
-# print("Latitude : {}".format(google.latitude))
-# print("Longitude : {}".format(google.longitude))
-# print("L'adresse de {} est : {}".format(google.user_query, google.global_address))
-# print("L'histoire se réfère à : {}".format(google.street_name))
-
-
-# address = input("Qu'est-ce qu'on cherche ducon ? : ")
-# query1 = MediaWiki(address)   #### passer la variable address_name
-# MediaWiki.history(query1)

@@ -1,12 +1,12 @@
 """ To test the classes.py file """
 
 import pytest
+import requests
+import random
 
 # from .. import classes
-from classes import Parser, GoogleMaps, MediaWiki
+from classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
 import run
-
-import requests
 
 
 class TestParser:
@@ -45,18 +45,17 @@ class TestGoogleMaps:
 
     # - GoogleMaps Mock :
     #   - Query 1.
-    # def setup_methoc(self, test_http_google_return1):
-    #     self.
     def test_http_google_return1(self, monkeypatch):
         """ To test the Google Maps Geocoding API by mocking the response
         and expecting a JSON result for 'openclassrooms'. """
+        direction = GoogleMaps("openclassrooms")
         self.results = [{'geometry': {'location': {'lat': 48.8747578, 'lng': 2.350564700000001}}}]
-
+        
         def mockreturn(request):
             return self.results
         
         monkeypatch.setattr(requests, 'get', mockreturn)
-        assert GoogleMaps.coordinates("openclassrooms") == results
+        assert direction.coordinates() == self.results
 
     # #   - Query 2.
     # def test_http_google_return2(self, monkeypatch):
@@ -82,29 +81,6 @@ class TestGoogleMaps:
     #     monkeypatch.setattr(requests, 'get', mockreturn)
     #     assert GoogleMaps.coordinates("bbbbbbbb") == None
 
-###########################################################################################
-
- #    #   - Query 1.
- #    def test_http_google_return1(self):
- #        """ To test a place to find. """
- #        query2 = GoogleMaps("openclassrooms")
- #        assert query2.coordinates() == (48.8747578, 2.350564700000001)
- #        # assert query2.coordinates("openclassrooms")[1] == 2.350564700000001
-
- #    #   - Query 2.
- #    def test_http_google_return2(self):
- #        """ To test a direction. """
- #        query3 = GoogleMaps("3 cours somme bordeaux")
- #        # assert query3.coordinates()[0] == 44.8301329
- #        # assert query3.coordinates()[1] == -0.5726070000000001
- #        assert query3.coordinates() == (44.8301329, -0.5726070000000001)
-
-    # #   - Wrong query.
- #    def test_http_google_no_return(self):
- #        """ To test no real place. """
- #        query3 = GoogleMaps("bbbbbbbb")
- #        assert query3.coordinates() == None
-
 
 ###########################################################################################
 
@@ -116,7 +92,7 @@ class TestMediaWiki:
     def test_http_wiki_return1(self, monkeypatch):
         """ To test the case for first name as a street direction. """
         # Expected part of the JSON result for "général leclerc".
-        results = "<ul><li>Philippe de Hauteclocque, dit Leclerc (1902-1947), général français durant la Seconde Guerre"
+        self.results = "Philippe de Hauteclocque, dit Leclerc (1902-1947), général français durant la Seconde Guerre."
         def mockreturn(request):
             return self.results
         monkeypatch.setattr(requests, 'get', mockreturn)
@@ -139,25 +115,30 @@ class TestMediaWiki:
     #     monkeypatch.setattr(requests, 'get', mockreturn)
     #     assert GoogleMaps.coordinates("aaaa") == None
 
+
 ###########################################################################################
 
- #    #   - History 2.
- #    def test_http_wiki_return2(self):
- #        """ To test the case for first name as a street direction. """
- #        place2 = MediaWiki("général leclerc")
- #        assert place2.history() == "<ul><li>Philippe de Hauteclocque, dit Leclerc (1902-1947), général français durant la Seconde Guerre"
+class TestGrandPyMessages:
+    """ To test the random messages. """
 
- #    #   - History 3.
- #    def test_http_wiki_return3(self):
- #        """ To test the case for first name as a street direction . """
- #        place3 = MediaWiki("charles de gaulle")
- #        assert place3.history() == "<p><b>Charles de Gaulle</b> (<small>prononcé : </small><span>[ʃaʁl də ɡol]</span> ), communément app"
+    # - Ramdom messages :
+    #   - Controling GrandPy Bot answer.
+    def test_randomAnswer(self):
+        """ To test that GrandPy Bot is answering the address. """
+        address_result = GrandPyMessages.randomAnswer()
+        assert address_result in GrandPyMessages.LISTANSWER
 
-    # #   - No history.
- #    def test_http_wiki_no_return(self):
- #        """ To test no real place. """
- #        no_place = MediaWiki("aaaa")
- #        assert no_place.history() == None
+    #   - Controling GrandPy Bot no answer.
+    def test_randomNoAnswer(self):
+        """ To test that GrandPy Bot is answering that he didn't understand the user query. """
+        no_result = GrandPyMessages.randomNoAnswer()
+        assert no_result in GrandPyMessages.LISTANOANSWER
+    
+    #   - Controling GrandPy Bot wikipedia history answer.
+    def test_randomWiki(self):
+        """ To test that GrandPy Bot is giving the wikipedia history of the address. """
+        wiki_result = GrandPyMessages.randomWiki()
+        assert wiki_result in GrandPyMessages.LISTWIKIPEDIA
 
 
 ###########################################################################################
