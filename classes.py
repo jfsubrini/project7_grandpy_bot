@@ -12,9 +12,9 @@ Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 10/03/201
 
 
 # Importation of Python's modules.
+import random
 import re
 import requests
-import random
 # from pprint import pprint     ### A VIRER
 
 # Importation of configuration module with the Google Maps Geocoding key.
@@ -55,7 +55,7 @@ class GoogleMaps:
         self.latitude = float
         self.longitude = float
         self.global_address = str
-    
+
     def coordinates(self):
         """ Google Maps Geocoding REST API """
         payload = {'address': self.user_query, 'key': GOOGLE_MAPS_KEY_GEOCODING}
@@ -67,10 +67,7 @@ class GoogleMaps:
             self.latitude = google_maps['results'][0]['geometry']['location']['lat']
             self.longitude = google_maps['results'][0]['geometry']['location']['lng']
             self.global_address = google_maps['results'][0]['formatted_address']
-            self.street_name = google_maps['results'][0]['address_components'][1]['short_name']  #A VIRER
-            return self.latitude, self.longitude, self.global_address, self.street_name # A VIRER LE DERNIER
-        else:
-            return "Votre demande n'a pas été comprise.\nEntrez juste le lieu que vous recherchez."
+            return self.latitude, self.longitude, self.global_address
 
 
 class MediaWiki:
@@ -85,45 +82,54 @@ class MediaWiki:
         self.longitude = longitude
 
     def history(self):
-        """ MediaWiki REST API """  
+        """ MediaWiki REST API """
         coord = '{}|{}'.format(self.latitude, self.longitude)
-        payload = {'action': 'query', 'generator': 'geosearch', 'ggsradius':100, \
+        payload = {'action': 'query', 'generator': 'geosearch', 'ggsradius':50, \
         'ggscoord': coord, 'prop': 'extracts', 'explaintext': True, 'exsentences': 2, \
         'exlimit': 1, 'redirects': True, 'format': 'json', 'formatversion': 2}
         response = requests.get('https://fr.wikipedia.org/w/api.php', params=payload)
         media_wiki = response.json()
         # pprint(media_wiki)    ### A VIRER
-        try:
-            media_wiki['query']['pages'][0]['missing'] or media_wiki['query']['pages'][0]['invalid']
-        except KeyError:
-            # Return the first two sentences of the intro in the extracts,
-            # in plain text (see payload).
-            first_2_sentences = media_wiki['query']['pages'][0]['extract']
-            # print(first_2_sentences)
-            return first_2_sentences
-        else:
-            return "Désolé mais GrandPy a oublié l'histoire de ce lieu..."
+        first_2_sentences = media_wiki['query']['pages'][0]['extract']
+        return first_2_sentences
+        # try:
+        #     media_wiki['query']['pages'][0]['missing'] or media_wiki['query']['pages'][0]['invalid']
+        # except KeyError:
+        #     # Return the first two sentences of the intro in the extracts,
+        #     # in plain text (see payload).
+        #     first_2_sentences = media_wiki['query']['pages'][0]['extract']
+        #     # print(first_2_sentences)
+        #     return first_2_sentences
+        # else:
+        #     return "Désolé mais GrandPy a oublié l'histoire de ce lieu..."
 
 
 class GrandPyMessages:
     """ Class to display random messages from a list of GrandPy Bot messages. """
 
     # Class attributes : list of possible answers.
-    LISTANSWER = ["Et voilà ! L'adresse que tu cherches est :\n",\
-                    "Oh mais c'est très facile ! L'endroit que tu cherches se trouve à cette adresse :\n",\
+    LISTANSWER = ["Et voilà ! L'adresse que tu cherches est :\n", \
+                    "Oh mais c'est très facile ! L'endroit que tu cherches se trouve à cette adresse :\n", \
                     "Rien de plus simple ! L'adresse de ton endroit est :\n"]
+
     LISTANOANSWER = ["Désolé mais je n'ai pas compris ta demande.\n"\
-                    "Peux-tu reformuler ta requête ?",\
+                    "Peux-tu reformuler ta requête ?", \
                     "Oh la la ! Je suis un peu confus, vu mon grand âge.\n"\
-                    "Tu peux me faire une demande plus claire et directe ?",\
+                    "Tu peux me faire une demande plus claire et directe ?", \
                     "Pardon ! Je suis un peu vieux, alors fais-moi une demande plus simple "\
                     "en indiquant le lieu recherché, stp !"]
+
     LISTWIKIPEDIA = ["Oh mais je connais très bien cet endroit "\
-                    "et cela me permet de te raconter son histoire !",\
+                    "et cela me permet de te raconter son histoire !", \
                     "Souvenir, souvenir ! Je me souviens de cet endroit.\n"\
-                    "En voici l'histoire.",\
+                    "En voici l'histoire.", \
                     "Je connais très bien ce lieu.\n"\
                     "GrandPy Bot va te conter son histoire..."]
+
+    LISTNOWIKIPEDIA = ["Désolé mais je n'ai pas d'histoire intéressante à ce sujet.", \
+                    "Oh ! Je n'ai plus les idées claires, j'ai oublié l'histoire à ce sujet.", \
+                    "Pardon mais je connais mal cet endroit."]
+
 
     def randomAnswer():
         """ Random messages where GrandPy Bot gives the address of the place. """
@@ -138,7 +144,13 @@ class GrandPyMessages:
         return no_answer
 
     def randomStory():
-        """ Random messages where GrandPy Bot tell the story of the address. """
+        """ Random messages where GrandPy Bot tell the story about the place. """
         story_answer = random.choice(GrandPyMessages.LISTWIKIPEDIA)
         # print(wiki_result)
         return story_answer
+
+    def randomNoStory():
+        """ Random messages where GrandPy Bot tell that he has no story about the place. """
+        no_story = random.choice(GrandPyMessages.LISTNOWIKIPEDIA)
+        # print(wiki_result)
+        return no_story
