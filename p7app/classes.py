@@ -38,7 +38,7 @@ class Parser:
         # To remove .!,; and ? from the sentence and transform it into a list of words.
         self.sentence = re.sub(r"[.!,;?\']", " ", self.sentence).split()
         # To remove the stopwords and .!,;' and ? from the sentence.
-        self.sentence = [x for x in self.sentence if x not in stopwords]
+        self.sentence = [x for x in self.sentence if x not in STOPWORDS]
         # To convert the list to string.
         self.sentence = ' '.join(self.sentence)
         return self.sentence

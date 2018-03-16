@@ -70,11 +70,10 @@
 
 		<!--Script JavaScript in the static file and js sub file-->
 		<script src="../static/js/googleAPI.js"></script>
-				
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap">	
-		</script>
-	</section>
 
+		<!--Google Maps JavaScript query-->				
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap"></script>
+	</section>
 </main>
 
 {% endblock %}
