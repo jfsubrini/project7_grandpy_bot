@@ -1,14 +1,12 @@
-""" Different Routes for the app. """
+""" The different routes for the app. """
 
 from flask import Flask, render_template, url_for
-# from classes import *
+# from .main import *
 
+app = Flask(__name__, instance_relative_config=True)
 
-app = Flask(__name__)
-# app = Flask(__name__, instance_relative_config=True)  # A VIRER ?
-
-# app.config.from_object('config')   # A VIRER ?
-# app.config.from_pyfile('config.py')  # A VIRER ?
+app.config.from_object('config')
+app.config.from_pyfile('config.py')
 
 @app.route("/")
 @app.route("/index/")
@@ -18,11 +16,14 @@ def home():
     # lat = GeoData().coordonates.latitude()
     # lng = GeoData().coordonates.longitude()
     # return render_template("home.html", latitude=lat, longitude=lng)
-    return render_template("home.html")
 
-    # return render_template("home.html", textAnswer=addressAnswer, \
-    #     address=globalAddress, textStory=storyAnswer, wikistory=wikiExtract)
-    # return render_template("home.html")
+    return render_template("home.html", addressAnswer="ff", noAnswer="jj", 
+          globalAddress="ll", storyAnswer="mm", noStory="pp", 
+          wikiExtract="ee")
+
+    # return render_template("home.html", addressAnswer=addressAnswer, noAnswer=noAnswer, 
+    #     globalAddress=globalAddress, storyAnswer=storyAnswer, noStory=noStory, 
+    #     wikiExtract=wikiExtract)
 
 @app.errorhandler(404)
 def page_not_found(error):

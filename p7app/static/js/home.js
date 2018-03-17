@@ -1,24 +1,22 @@
-// jQuery script to display all the messages, and the map
+// jQuery script to display all the messages and the Google map.
 
-var textInput = $('#textUser');
+var textUser = $('#textUser');
 var address = $('#address');
 var wikiHistory = $('#wikiHistory');
-var map = $('#map');  
+var map = $('#map');
 var button = $('#submit');
 var loader = $('#loader');
 
 button.on('click', function(event) {
   event.preventDefault();
-  textInput.hide();
-  textInput.empty();
+  textUser.hide();
+  textUser.html('<img src="../static/images/user.png" alt="Icone de l\'utilisateur" title="Icone de l\'utilisateur" width="70" height="70" id="userPic">');
   address.hide();
-  // address.empty();
   wikiHistory.hide();
-  // wikiHistory.empty();  
   map.hide();
   var text = $('input:text').val();
-  textInput.append(text);
-  textInput.show();
+  textUser.append(text);
+  textUser.show();
   $('input:text').val('');
   loader.fadeIn(3500).fadeOut('slow', function() {
     address.show();
