@@ -3,26 +3,20 @@
 
 /* HEADER CSS */
 
-.commonCss {
+.pickupLine {
     font-family: "Libre Baskerville";
     font-weight: 700;
     text-align: center;
-    color: rgb(65, 79, 225);
-}
-
-#siteNameBig {
-    font-size: 40px;
-    padding-top: 30px;
-}
-
-#pickupLine {
-    font-size: 20px;
     color: rgb(191, 74, 26);
-    padding-top: 10px;
+    font-size: 30px;
+    padding-top: 30px;    
 }
 
-#siteNameSmall {
-    font-size: 30px;
+#pickupLineMedium {
+    font-size: 20px;
+}
+
+#pickupLineSmall {
     padding-top: 20px;
 }
 
