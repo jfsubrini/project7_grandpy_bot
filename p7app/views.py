@@ -13,15 +13,13 @@ app.config.from_pyfile('config.py')
 @app.route("/home/")
 def home():
     """ Opening the homepage. """
-    # lat = GeoData().coordonates.latitude()
-    # lng = GeoData().coordonates.longitude()
-    # return render_template("home.html", latitude=lat, longitude=lng)
-
-    # return render_template("home.html", addressAnswer="ff", noAnswer="jj",
-    #       globalAddress="ll", storyAnswer="mm", noStory="pp",
-    #       wikiExtract="ee")
-
-    return render_template("home.html", addressAnswer=addressAnswer, noAnswer=noAnswer, globalAddress=globalAddress, storyAnswer=storyAnswer, noStory=noStory, wikiExtract=wikiExtract)
+    return render_template("home.html", \
+        addressAnswer=addressAnswer, \
+        noAnswer=noAnswer, \
+        globalAddress=globalAddress, \
+        storyAnswer=storyAnswer, \
+        noStory=noStory, \
+        wikiExtract=wikiExtract)
 
 @app.errorhandler(404)
 def page_not_found(error):
