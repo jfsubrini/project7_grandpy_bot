@@ -16,10 +16,9 @@
 		<!--User's Input Text-->
 		<p class="well" id="textUser"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="userPic"></p>
 		<!--GrandPy Bot displaying the address-->
-		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ addressAnswer }}{{ globalAddress }} {% endif %} {% if False %} {{ noAnswer }} {% endif %}</p>
+		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ addressAnswer }}<br><span class="floatSpan">{{ globalAddress }}.</span><br><br>Regarde la jolie carte ci-dessous.{% endif %} {% if False %} {{ noAnswer }} {% endif %}</p>
 		<!--GrandPy Bot address history with Wikipedia-->
-		<p class="well" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ storyAnswer }}{{ wikiExtract }} {% endif %} {% if False %} {{ noStory }} {% endif %}
-		<!-- <blockquote><abbr title="Wikipedia">Wikipedia</abbr> nous raconte ceci :<br>{{ first_2_sentences }}<small class="pull-right">Wikipedia</small><br></blockquote><a href="https://fr.wikipedia.org/wiki/{{ openclassrooms }}" id="wikilink">- En savoir plus sur Wikipedia.</a> --></p>
+		<p class="well" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ storyAnswer }}<br><span class="floatSpan">{{ wikiExtract }}</span><br><a href="https://fr.wikipedia.org/wiki/openclassrooms" id="wikilink">- En savoir plus sur Wikipedia.</a>{% endif %} {% if False %} {{ noStory }} {% endif %}</p>
 
 		<!--LOADER-->
 		<div class="fa-3x" id="loader">

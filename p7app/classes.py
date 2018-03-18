@@ -108,9 +108,9 @@ class GrandPyMessages:
     """ Class to display random messages from a list of GrandPy Bot messages. """
 
     # Class attributes : list of possible answers.
-    LISTANSWER = ["Et voilà ! L'adresse que tu cherches est :\n", \
-                    "Oh mais c'est très facile ! L'endroit que tu cherches se trouve à cette adresse :\n", \
-                    "Rien de plus simple ! L'adresse de ton endroit est :\n"]
+    LISTANSWER = ["Et voilà ! L'adresse que tu cherches est : ", \
+                    "Oh mais c'est très facile ! L'endroit que tu cherches se trouve à cette adresse : ", \
+                    "Rien de plus simple ! L'adresse du lieu que tu cherches : "]
 
     LISTANOANSWER = ["Désolé mais je n'ai pas compris ta demande.\n"\
                     "Peux-tu reformuler ta requête ?", \
@@ -120,11 +120,11 @@ class GrandPyMessages:
                     "en indiquant le lieu recherché, stp !"]
 
     LISTWIKIPEDIA = ["Oh mais je connais très bien cet endroit "\
-                    "et cela me permet de te raconter son histoire !", \
-                    "Souvenir, souvenir ! Je me souviens de cet endroit.\n"\
-                    "En voici l'histoire.", \
-                    "Je connais très bien ce lieu.\n"\
-                    "GrandPy Bot va te conter son histoire..."]
+                    "et cela me permet de te raconter son histoire ! ", \
+                    "Souvenir, souvenir ! Je me souviens de cet endroit. \n"\
+                    "En voici l'histoire. ", \
+                    "Je connais très bien ce lieu. \n"\
+                    "GrandPy Bot va te conter son histoire... "]
 
     LISTNOWIKIPEDIA = ["Désolé mais je n'ai pas d'histoire intéressante à ce sujet.", \
                     "Oh ! Je n'ai plus les idées claires, j'ai oublié l'histoire à ce sujet.", \

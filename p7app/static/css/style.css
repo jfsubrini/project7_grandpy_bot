@@ -63,6 +63,21 @@ article {
     margin-bottom: 20px;
 }
 
+.floatSpan {
+    color: ivory;
+}
+
+#wikilink {
+    color: rgb(72, 37, 131);
+    text-decoration: none;
+}
+#wikilink a:hover {  /*marche pas*/
+    color: ivory;
+}
+#wikilink a:active {   /*marche pas*/
+    color: black;
+}
+
 /* User query message */
 #textUser {
     color: rgb(191, 74, 26);
