@@ -52,7 +52,7 @@ class TestGoogleMaps:
         
         results = [{'geometry': {'location': {'lat': 48.8747578, 'lng': 2.350564700000001}}}]
         
-        def mockreturn(requests):
+        def mockreturn(request):
             return results
         
         monkeypatch.setattr(requests, 'get', mockreturn)

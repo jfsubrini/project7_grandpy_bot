@@ -20,7 +20,8 @@ noStory = GrandPyMessages.randomNoStory()
 
 # Parser instance creation.
 # text input (home.html) comme argument à mettre.
-sentence = Parser("Salut GrandPy Bot, comment va ? Je cherche l'adresse du musée Guimet, merci.")
+sentence = Parser("Salut GrandPy Bot, comment va ? Je cherche l'adresse de la tour Eiffel, merci.")
+# sentence = Parser(userText)
 # Running the parsing method.
 userQuery = sentence.parsing()
 

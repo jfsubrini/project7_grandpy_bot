@@ -1,6 +1,6 @@
 """ The different routes for the app. """
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, json
 from .main import *
 
 app = Flask(__name__, instance_relative_config=True)
@@ -19,7 +19,15 @@ def home():
         globalAddress=globalAddress, \
         storyAnswer=storyAnswer, \
         noStory=noStory, \
-        wikiExtract=wikiExtract)
+        wikiExtract=wikiExtract, \
+        latitude=lat, \
+        longitude=lng)
+
+@app.route("/_query", methods=['POST'])
+def query():
+    """ Method to receive the query from the client side (input form). """
+    userText = request.form['text']
+    return json.dumps({'status':'OK', 'query':userText})
 
 @app.errorhandler(404)
 def page_not_found(error):

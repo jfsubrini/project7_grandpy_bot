@@ -1,8 +1,7 @@
+// JavaScript script to call the Google Maps API JavaScript to display the right map.
 
-var lat = 44.8506909;
-var lng = -0.5746955;
-// var lat = {{ latitude }}
-// var lng = {{ longitude }}
+var lat = {{ latitude }}
+var lng = {{ longitude }}
 function initMap() {
 // Create a map object and specify the DOM element for display.
 // New map with map options.
@@ -31,7 +30,7 @@ var map = new google.maps.Map(document.getElementById('map'), {
 	});
 	// Add an info window that pop up when the mouse mover over.
 	var infoWindow = new google.maps.InfoWindow({
-		content: '<h4>Ici</h4>'
+		content: "<h4>C'est ici !</h4>"
 	});
 	marker.addListener('mouseover', function(){
 		infoWindow.open(map, marker);

@@ -15,6 +15,19 @@ button.on('click', function(event) {
   wikiHistory.hide();
   map.hide();
   var text = $('input:text').val();
+  
+  $.ajax({
+    url: '/_query',
+    data: $('form').serialize(),
+    type: 'POST',
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  });
+
   textUser.append(text);
   textUser.show();
   $('input:text').val('');
