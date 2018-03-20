@@ -67,14 +67,19 @@ article {
     color: ivory;
 }
 
-#wikilink {
-    color: rgb(72, 37, 131);
+.wikilink a {
     text-decoration: none;
 }
-#wikilink a:hover {  /*marche pas*/
+.wikilink a:link {
+    color: rgb(72, 37, 131);
+}
+.wikilink a:visited {
+    color: rgb(72, 37, 131);
+}
+.wikilink a:hover {
     color: ivory;
 }
-#wikilink a:active {   /*marche pas*/
+.wikilink a:active {
     color: black;
 }
 
