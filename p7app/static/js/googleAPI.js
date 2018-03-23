@@ -1,12 +1,12 @@
 // JavaScript script to call the Google Maps API JavaScript to display the right map.
 
-var lat = {{ latitude }}
-var lng = {{ longitude }}
+var latitude = 48.8599614;
+var longitude = 2.3265614;
+
 function initMap() {
 // Create a map object and specify the DOM element for display.
 // New map with map options.
-// var userPlace = {lat: {{ latitude }}, lng: {{ longitude }} };
-var userPlace = {lat: lat, lng: lng };
+var userPlace = {lat: latitude, lng: longitude };
 var map = new google.maps.Map(document.getElementById('map'), {
   center: userPlace,
   zoom: 17,

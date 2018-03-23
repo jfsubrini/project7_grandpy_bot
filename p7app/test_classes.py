@@ -5,7 +5,7 @@ import requests
 import random
 
 # from .. import classes
-from .classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
+from classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
 import run
 
 

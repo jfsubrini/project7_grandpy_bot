@@ -15,10 +15,10 @@
 		Teste donc mes connaissances...</p>
 		<!--User's Input Text-->
 		<p class="well" id="textUser"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="userPic"></p>
-		<!--GrandPy Bot displaying the address-->
-		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ addressAnswer }}<br><span class="floatSpan">{{ globalAddress }}.</span><br><br>Regarde la jolie carte ci-dessous.{% endif %} {% if False %} {{ noAnswer }} {% endif %}</p>
-		<!--GrandPy Bot address history with Wikipedia-->
-		<p class="well wikilink" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic">{% if True %} {{ storyAnswer }}<br><span class="floatSpan">{{ wikiExtract }}</span><br><a href="https://fr.wikipedia.org/wiki/openclassrooms">- En savoir plus sur Wikipedia.</a>{% endif %} {% if False %} {{ noStory }} {% endif %}</p>
+		<!--GrandPy Bot giving a random message and displaying the address if any-->
+		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerAddress"></span><br><span id="addressGlobal" class="ivoryColor"></span></p>
+		<!--GrandPy Bot giving a random message and the place story with Wikipedia if any-->
+		<p class="well wikilink" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerStory"></span><br><span id="extractWiki" class="ivoryColor"></span><br><span id="linkWikipedia"></span></p>
 
 		<!--LOADER-->
 		<div class="fa-3x" id="loader">
@@ -68,8 +68,8 @@
 		<div class="col-md-12 thumbnail" id="map"></div>
 
 		<!--Script JavaScript in the static file and js sub file-->
-		<script src="../static/js/googleAPI.js"></script>
-
+<!-- 		<script src="../static/js/googleAPI.js"></script>
+ -->
 		<!--Google Maps JavaScript query-->				
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap"></script>
 	</section>

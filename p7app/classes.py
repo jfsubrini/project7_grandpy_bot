@@ -90,18 +90,13 @@ class MediaWiki:
         response = requests.get('https://fr.wikipedia.org/w/api.php', params=payload)
         media_wiki = response.json()
         # pprint(media_wiki)    ### A VIRER
-        first_2_sentences = media_wiki['query']['pages'][0]['extract']
-        return first_2_sentences
-        # try:
-        #     media_wiki['query']['pages'][0]['missing'] or media_wiki['query']['pages'][0]['invalid']
-        # except KeyError:
-        #     # Return the first two sentences of the intro in the extracts,
-        #     # in plain text (see payload).
-        #     first_2_sentences = media_wiki['query']['pages'][0]['extract']
-        #     # print(first_2_sentences)
-        #     return first_2_sentences
-        # else:
-        #     return "Désolé mais GrandPy a oublié l'histoire de ce lieu..."
+        try:
+            # Return the first two sentences of the intro in the extracts,
+            # in plain text, of the place with that coordinates (see payload).
+            first_2_sentences = media_wiki['query']['pages'][0]['extract']
+            return first_2_sentences
+        except KeyError:
+            pass
 
 
 class GrandPyMessages:
@@ -128,7 +123,7 @@ class GrandPyMessages:
 
     LISTNOWIKIPEDIA = ["Désolé mais je n'ai pas d'histoire intéressante à ce sujet.", \
                     "Oh ! Je n'ai plus les idées claires, j'ai oublié l'histoire à ce sujet.", \
-                    "Pardon mais je connais mal cet endroit."]
+                    "Pardon mais je connais mal l'histoire de cet endroit."]
 
 
     def randomAnswer():
