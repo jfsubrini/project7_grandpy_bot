@@ -67,6 +67,28 @@ article {
     color: ivory;
 }
 
+#notIvory {
+    color: rgb(72, 37, 131);
+}
+
+
+/* Links to the map place and to Wikipedia. */
+.toMap a {
+    text-decoration: none;
+}
+.toMap a:link {
+    color: rgb(72, 37, 131);
+}
+.toMap a:visited {
+    color: rgb(72, 37, 131);
+}
+.toMap a:hover {
+    color: ivory;
+}
+.toMap a:active {
+    color: black;
+}
+
 .wikilink a {
     text-decoration: none;
 }
@@ -84,7 +106,7 @@ article {
 }
 
 /* User query message */
-#textUser {
+#textUserDiv {
     color: rgb(191, 74, 26);
     display: none;
 }

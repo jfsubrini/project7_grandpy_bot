@@ -14,11 +14,11 @@
 		Mon grand âge m'a donné une longue expérience de la géographie et de l'histoire.<br>
 		Teste donc mes connaissances...</p>
 		<!--User's Input Text-->
-		<p class="well" id="textUser"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="userPic"></p>
+		<div class="well" id="textUserDiv"><img src="../static/images/user.png" alt="Icone de l'utilisateur" title="Icone de l'utilisateur" width="70" height="70" id="userPic"><span id="textUser"></span></div>
 		<!--GrandPy Bot giving a random message and displaying the address if any-->
-		<p class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerAddress"></span><br><span id="addressGlobal" class="ivoryColor"></span></p>
+		<div class="well" id="address"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerAddress"></span><br><span id="addressGlobal" class="ivoryColor"></span></div>
 		<!--GrandPy Bot giving a random message and the place story with Wikipedia if any-->
-		<p class="well wikilink" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerStory"></span><br><span id="extractWiki" class="ivoryColor"></span><br><span id="linkWikipedia"></span></p>
+		<div class="well wikilink" id="wikiHistory"><img src="../static/images/grandpy.png" alt="Icone de GrandPy Bot" title="Icone de GrandPy Bot" width="70" height="70" class="grandpyPic"><span id="answerStory"></span><br><span id="extractWiki" class="ivoryColor"></span><br><span id="linkWikipedia"></span></div>
 
 		<!--LOADER-->
 		<div class="fa-3x" id="loader">
@@ -64,7 +64,7 @@
 	-->		
 
 	<!--GOOGLE MAP LAYOUT-->
-	<section class="row">
+	<section class="row" id="mapPlace">
 		<div class="col-md-12 thumbnail" id="map"></div>
 
 		<!--Script JavaScript in the static file and js sub file-->
