@@ -38,7 +38,7 @@ button.on('click', function(event) {
       loader.fadeIn(3500).fadeOut('slow', function() {
         answerAddress.append(response['addressAnswer']);
         if (response['globalAddress'] != '') {
-          	addressGlobal.append(response['globalAddress'] + '<br><br><span class="toMap" id="notIvory"><a href:"#mapPlace">Regarde la jolie carte ci-dessous.</a></span>');
+          	addressGlobal.append(response['globalAddress'] + '<br><br><span class="toMap" id="notIvory"><a href="#mapPlace">Regarde la jolie carte ci-dessous.</a></span>');
         
         //////////
 			// // Sending the coordinates of the address to the Google Maps API JavaScript to design and 
