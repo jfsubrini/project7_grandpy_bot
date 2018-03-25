@@ -51,7 +51,8 @@ def query():
             # MediaWiki instance creation.
             coords = MediaWiki(latitude, longitude)
             # Running the history method to get the wikipedia page for that coordonates.
-            wikiExtract = coords.history()
+            wikiExtract = coords.history()[0]  ##########################
+            pageid = coords.history()[1]  #########################
             if wikiExtract:
                 # GrandPy Bot different possible messages in case of success.
                 storyAnswer = GrandPyMessages.randomStory()
@@ -60,11 +61,13 @@ def query():
                 storyAnswer = GrandPyMessages.randomNoStory()
                 # Reference this empty variable.
                 wikiExtract = ''
+                pageid = '' ########################
         except:
             # GrandPy Bot different possible messages if there is no answer from Wikipedia.
             storyAnswer = GrandPyMessages.randomNoStory()
             # Reference this empty variable.
             wikiExtract = ''
+            pageid = ''
     except:
         # GrandPy Bot different possible messages if there is no answer from GoogleMaps.
         addressAnswer = GrandPyMessages.randomNoAnswer()
@@ -74,6 +77,7 @@ def query():
         globalAddress = ''
         wikiExtract = ''
         storyAnswer = ''
+        pageid = ''
 
     # JSON with the responses send back to AJAX (home.js). 
     return json.dumps({'userText': userText, \
@@ -82,7 +86,8 @@ def query():
         'lng':longitude, \
         'globalAddress':globalAddress, \
         'storyAnswer': storyAnswer, \
-        'wikiExtract': wikiExtract })
+        'wikiExtract': wikiExtract, \
+        'pageid': pageid })
 
 
 @app.errorhandler(404)

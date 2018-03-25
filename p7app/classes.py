@@ -94,7 +94,8 @@ class MediaWiki:
             # Return the first two sentences of the intro in the extracts,
             # in plain text, of the place with that coordinates (see payload).
             first_2_sentences = media_wiki['query']['pages'][0]['extract']
-            return first_2_sentences
+            pageid = media_wiki['query']['pages'][0]['pageid']
+            return first_2_sentences, pageid
         except KeyError:
             pass
 

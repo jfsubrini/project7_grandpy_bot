@@ -121,6 +121,10 @@ article {
     display: none;
 }
 
+#linkWikipedia {
+    display: none;
+}
+
 /* GrandPy & User's Icons */
 .grandpyPic, #userPic {
     margin-right : 20px;

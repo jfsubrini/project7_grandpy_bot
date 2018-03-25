@@ -24,7 +24,8 @@ button.on('click', function(event) {
   wikiHistory.hide();
   answerStory.text('');
   extractWiki.text('');
-  linkWikipedia.text('');
+  linkWikipedia.hide(); ///////////////////////
+  linkWikipedia.text(''); ////////////////////
   map.hide();
   
   $.ajax({
@@ -37,25 +38,41 @@ button.on('click', function(event) {
       textUserDiv.show();
       loader.fadeIn(3500).fadeOut('slow', function() {
         answerAddress.append(response['addressAnswer']);
-        addressGlobal.append(response['globalAddress'] + '<br><br><span class="toMap" id="notIvory"><a href:"#mapPlace">Regarde la jolie carte ci-dessous.</a></span>');
+        if (response['globalAddress'] != '') {
+          addressGlobal.append(response['globalAddress'] + '<br><br><span class="toMap" id="notIvory"><a href:"#mapPlace">Regarde la jolie carte ci-dessous.</a></span>');
+        }
         address.show();
         answerStory.append(response['storyAnswer']);
         if (response['wikiExtract'] != '') {
-          extractWiki.append(response['wikiExtract']); 
-          linkWikipedia.html('<a href="https://fr.wikipedia.org/wiki/openclassrooms">- En savoir plus sur Wikipedia.</a>');
+          extractWiki.append(response['wikiExtract']);
+          linkWikipedia.append('<a href="https://fr.wikipedia.org/wiki/' + response['pageid'] + '>- En savoir plus sur Wikipedia.</a>');
           wikiHistory.show();
+          linkWikipedia.show();   //////////////////////////////
+        } else {
+          if (response['globalAddress'] != '') {
+            wikiHistory.show();
+          }
         }
         $('input:text').val('')
-        
+        ////////
+        map.show();
+      });
+    },
+    error: function(error) {
+      // console.log(error);    // A REVOIR
+    }
+  });
 
-        // Sending the coordinates of the address to the Google Maps API JavaScript to design and 
+//////////////////////////////////////////////////////////////////////////////
+
+      // Sending the coordinates of the address to the Google Maps API JavaScript to design and 
         // display the map with a marker and some other little things.
-        var latitude = response['lat'];
-        var longitude = response['lng'];
+        // var latitude = response['lat'];
+        // var longitude = response['lng'];
         function initMap() {
         // Create a map object and specify the DOM element for display.
         // New map with map options.
-        var userPlace = {lat: latitude, lng: longitude};
+        var userPlace = {lat: 36.7186933, lng: -4.4127521};
         var map = new google.maps.Map(document.getElementById('map'), {
           center: userPlace,
           zoom: 17,
@@ -85,11 +102,7 @@ button.on('click', function(event) {
             infoWindow.open(map, marker);
           });
         }
-        map.show();
-      });
-    },
-    error: function(error) {
-      // console.log(error);    // A REVOIR
-    }
-  });
+
+
+
 });
