@@ -1,6 +1,8 @@
 """ To test the classes.py file """
 
 import urllib.request
+import pytest
+
 
 from p7app.classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
 
