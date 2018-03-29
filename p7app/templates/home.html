@@ -41,35 +41,12 @@
 			</div>
 			</legend></h1>
 		</form>
-	</section>
-
-	<!--IN THE CASE THAT THERE IS NO ADDRESS-->
-	<!-- <div class="form-group has-warning has-feedback">
-		<label class="control-label" for="idWarning">Avertissement</label>
-		<input type="text" class="form-control imput-md" id="idWarning" placeholder="Entrez l'adresse à chercher">
-		<span class="glyphicon glyficon-warning-sign form-control-feedback"></span>
-		<span class="help-block">Il y a un problème dans la saisie</span>
-	</div>
-	<script>
-		$(function() {
-			$("form").on("submit", function() {
-				if($("input").val().lenght < 4) {
-					$("div.form-group").addClass("has-error");
-					$("div.alert").show("slow").delay(4000).hide("slow");
-					return false;					
-				}
-			});
-		});
-	</script>
-	-->		
+	</section>	
 
 	<!--GOOGLE MAP LAYOUT-->
 	<section class="row" id="mapPlace">
 		<div class="col-md-12 thumbnail" id="map"></div>
 
-		<!--Script JavaScript in the static file and js sub file-->
-<!-- 		<script src="../static/js/googleAPI.js"></script>
- -->
 		<!--Google Maps JavaScript query-->				
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['GOOGLE_MAPS_KEY_JS'] }}&callback=initMap"></script>
 	</section>

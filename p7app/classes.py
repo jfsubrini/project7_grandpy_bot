@@ -6,7 +6,7 @@
 ##             All the classes for the GrandPy Bot website.            ##
 #########################################################################
 
-Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 10/03/2018.
+Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 29/03/2018.
 
 """
 
@@ -15,7 +15,6 @@ Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 10/03/201
 import random
 import re
 import requests
-# from pprint import pprint     ### A VIRER
 
 # Importation of configuration module with the Google Maps Geocoding key.
 from instance.config import GOOGLE_MAPS_KEY_GEOCODING
@@ -61,7 +60,6 @@ class GoogleMaps:
         payload = {'address': self.user_query, 'key': GOOGLE_MAPS_KEY_GEOCODING}
         response = requests.get('https://maps.googleapis.com/maps/api/geocode/json', params=payload)
         google_maps = response.json()
-        # pprint(google_maps)     ### A VIRER
         status = google_maps['status']
         if status == 'OK':
             self.latitude = google_maps['results'][0]['geometry']['location']['lat']
@@ -89,7 +87,6 @@ class MediaWiki:
         'exlimit': 1, 'redirects': True, 'format': 'json', 'formatversion': 2}
         response = requests.get('https://fr.wikipedia.org/w/api.php', params=payload)
         media_wiki = response.json()
-        # pprint(media_wiki)    ### A VIRER
         try:
             # Return the first two sentences of the intro in the extracts,
             # in plain text, of the place with that coordinates (see payload).

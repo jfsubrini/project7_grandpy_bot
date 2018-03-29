@@ -20,17 +20,6 @@
     padding-top: 20px;
 }
 
-/*header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
-.logo {
-    position: absolute;
-}*/
-
 
 /* HOME CSS */
 
@@ -70,7 +59,6 @@ article {
 #notIvory {
     color: rgb(72, 37, 131);
 }
-
 
 /* Links to the map place and to Wikipedia. */
 .toMap a {

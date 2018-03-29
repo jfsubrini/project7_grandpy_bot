@@ -7,7 +7,7 @@
 ##       Running app for the GrandPy Bot website with Flask         ##
 #########################################################################
 
-Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 16/03/2018.
+Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 29/03/2018.
 
 """
 
@@ -15,4 +15,4 @@ Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 16/03/201
 from p7app import app
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
