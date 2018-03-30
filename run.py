@@ -4,7 +4,7 @@
 
 """
 ############################## GrandPy Bot ##############################
-##       Running app for the GrandPy Bot website with Flask         ##
+##       To run p7app for the GrandPy Bot website with Flask         ##
 #########################################################################
 
 Copyright Jean-François Subrini, student DA Python at OpenClassrooms, 29/03/2018.

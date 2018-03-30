@@ -1,8 +1,8 @@
 """ To test the classes.py file """
 
+
 import urllib.request
 import pytest
-
 
 from p7app.classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
 
@@ -13,25 +13,25 @@ class TestParser:
     # - Parsing :
     #   - Controling the lowercase.
     def test_parsing_lowercase(self):
-        """ To test that the parser applies lowercase to all the words. """
+        """To test that the parser applies lowercase to all the words."""
         sentence1 = Parser("Rue Général Leclerc Paris France")
         assert sentence1.parsing() == "rue général leclerc paris france"
 
     #   - Controling the punctuation out.
     def test_parsing_punctuation(self):
-        """ To test that the parser removes punctuation in the sentence. """
+        """To test that the parser removes punctuation in the sentence."""
         sentence2 = Parser("26, Rue de l'Appel de Londres !")
         assert sentence2.parsing() == "26 rue appel londres"
 
     #   - Controling the stopwords out.
     def test_parsing_stopwords(self):
-        """ To test that the parser removes all the stopwords present in the sentence. """
-        sentence3 = Parser("Salut GrandPy ! Adresse du Lycée Montaigne à Paris")
+        """To test that the parser removes all the stopwords present in the sentence."""
+        sentence3 = Parser("Salut GrandPy ! Peux-tu me donner l'adresse du Lycée Montaigne à Paris ?")
         assert sentence3.parsing() == "lycée montaigne paris"
 
     #   - Controling the whole sentence parsing.
     def test_parsing_total(self):
-        """ To test that the parser works all right. """
+        """To test that the parser works all right."""
         sentence4 = Parser("Salut GrandPy ! Comment tu vas ? Je cherche l'adresse d'Openclassrooms ! Merci")
         assert sentence4.parsing() == "openclassrooms"
 
@@ -45,7 +45,7 @@ class TestGoogleMaps:
     #   - Query 1, that gives a result (latitude, longitude and global address).
     def test_http_google_return1(self, monkeypatch):
         """To test the Google Maps Geocoding API by mocking the response
-        and expecting a JSON result for 'openclassrooms'."""
+        and expecting the right result for 'openclassrooms'."""
         direction = GoogleMaps("openclassrooms")
         results = {'results': [{'formatted_address': "7 Cité Paradis, 75010 Paris, France", \
         'geometry': {'location': {'lat': 48.8747578, 'lng': 2.350564700000001}}}], 'status': 'OK'}
@@ -59,7 +59,7 @@ class TestGoogleMaps:
     #   - Query 2, that gives another result (latitude, longitude and global address).
     def test_http_google_return2(self, monkeypatch):
         """To test the Google Maps Geocoding API by mocking the response
-        and expecting a JSON result for 'musée guimet'."""
+        and expecting the right result for 'musée guimet'."""
         direction = GoogleMaps("musée guimet")
         results = {'results': [{'formatted_address': "6 Place d'Iéna, 75116 Paris, France", \
         'geometry': {'location': {'lat': 48.86510080000001, 'lng': 2.2936899}}}], 'status': 'OK'}
@@ -69,10 +69,11 @@ class TestGoogleMaps:
         assert direction.coordinates() == (results['results'][0]['geometry']['location']['lat'], \
             results['results'][0]['geometry']['location']['lng'], \
             results['results'][0]['formatted_address'])
+
     #   - Query 3, that gives no result.
     def test_http_google_no_return(self, monkeypatch):
         """To test the Google Maps Geocoding API by mocking the response
-        and expecting no JSON result for 'bbbbbbbb', i.e. no place, no result."""
+        and expecting no result for 'bbbbbbbb', i.e. no place."""
         direction = GoogleMaps("bbbbbbbb")
         results = None
         def mockreturn(request, params):

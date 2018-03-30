@@ -1,4 +1,5 @@
-/* TEMPLATES CSS */
+/* CSS FOR TEMPLATES */
+
 
 
 /* HEADER CSS */
@@ -19,6 +20,7 @@
 #pickupLineSmall {
     padding-top: 20px;
 }
+
 
 
 /* HOME CSS */
@@ -60,7 +62,50 @@ article {
     color: rgb(72, 37, 131);
 }
 
-/* Links to the map place and to Wikipedia. */
+/* The Input Form */
+
+.labelFireFox {
+    display: block;   /* To debug the Bootstrap label class for FireFox browser */
+}
+
+.pad {
+    padding-top: 40px;
+}
+
+.largeIcon {
+    font-size: 175%;
+    padding-top: 5px;
+}
+
+/* GrandPy & User's Icons */
+.grandpyPic, #userPic {
+    margin-right : 20px;
+    margin-bottom : 10px;
+}
+
+/* The User Query */
+/* User query message */
+#textUserDiv {
+    color: rgb(191, 74, 26);
+    display: none;
+}
+
+/* The Loader */
+#loader {
+    margin-left: 15%;
+    display: none;
+}
+
+#thinking {
+    font-size: 20px;
+}
+
+/* The Address */
+/* GrandPy Bot displaying the address */
+#address {
+    display: none;
+}
+/* Link to the map place. */
 .toMap a {
     text-decoration: none;
 }
@@ -77,6 +122,12 @@ article {
     color: black;
 }
 
+/* The Story */
+/* GrandPy Bot address history with Wikipedia */
+#wikiHistory {
+    display: none;
+}
+/* Link to Wikipedia. */
 .wikilink a {
     text-decoration: none;
 }
@@ -93,54 +144,13 @@ article {
     color: black;
 }
 
-/* User query message */
-#textUserDiv {
-    color: rgb(191, 74, 26);
-    display: none;
-}
-
-/* GrandPy Bot displaying the address */
-#address {
-    display: none;
-}
-
-/* GrandPy Bot address history with Wikipedia */
-#wikiHistory {
-    display: none;
-}
-
-/* GrandPy & User's Icons */
-.grandpyPic, #userPic {
-    margin-right : 20px;
-    margin-bottom : 10px;
-}
-
-/* Loader */
-#loader {
-    margin-left: 15%;
-    display: none;
-}
-
-#thinking {
-    font-size: 20px;
-}
-
-/* Input form */
-.pad {
-    padding-top: 40px;
-}
-
-.largeIcon {
-    font-size: 175%;
-    padding-top: 5px;
-}
-
-/* Google Map */
+/* The Google Map */
 #map {
     height: 500px;
     width: 100%;
     display: none;
 }
+
 
 
 /* FOOTER CSS */
@@ -154,6 +164,7 @@ article {
     text-align: center;
 }
 
+/* Link to my LinkedIn. */
 .myName {
     font-family: Montserrat;
     font-weight: 200;
@@ -164,7 +175,6 @@ article {
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
-
 .myName a {
     text-decoration: none;
 }
@@ -173,4 +183,18 @@ article {
 }
 .myName a:active {
     color: black;
+}
+
+
+
+/* ERROR 404 */
+
+#errorH1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#errorH2 {
+    text-align: center;
+    margin-bottom: 200px;
 }

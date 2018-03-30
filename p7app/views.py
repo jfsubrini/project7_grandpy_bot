@@ -1,4 +1,5 @@
-""" The different routes for the app and what to render, managing the queries. """
+""" The different routes for the app, functions to manage the queries
+ and render a HTML page. """
 
 from flask import Flask, render_template, url_for, request, json
 from .classes import Parser, GoogleMaps, MediaWiki, GrandPyMessages
@@ -13,7 +14,7 @@ app.config.from_pyfile('config.py')
 @app.route("/index/")
 @app.route("/home/")
 def home():
-    """ Opening the homepage. """
+    """Opening the homepage."""
     return render_template("home.html")
 
 
@@ -91,5 +92,5 @@ def query():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    """ Error handler 404. """
+    """Error handler 404."""
     return render_template("errors/404.html"), 404

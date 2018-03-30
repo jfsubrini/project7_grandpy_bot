@@ -1,4 +1,4 @@
-// jQuery script to display all the messages and the Google map.
+// jQuery and pure JavaScript script to display all the messages and the Google map of the wanted place.
 
 // Creating jQuery objects with id from home.html.
 var textUserDiv = $('#textUserDiv');
@@ -15,6 +15,7 @@ var button = $('#submit');
 var loader = $('#loader');
 var latitude = $('#lat');
 var longitude = $('#lng');
+// Creating variables for the Google Map. 
 var userPlace;
 var mapGoogle;
 
