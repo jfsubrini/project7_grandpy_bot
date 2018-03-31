@@ -10,11 +10,9 @@ var wikiHistory = $('#wikiHistory');
 var answerStory = $('#answerStory');
 var extractWiki = $('#extractWiki');
 var linkWikipedia = $('#linkWikipedia');
-var map2 = $('#map');
+var maps = $('#map');
 var button = $('#submit');
 var loader = $('#loader');
-var latitude = $('#lat');
-var longitude = $('#lng');
 // Creating variables for the Google Map. 
 var userPlace;
 var mapGoogle;
@@ -22,7 +20,7 @@ var mapGoogle;
 // JavaScript script to call the Google Maps API JavaScript and initiate a map.
 function initMap() {
   // Create a map object and specify the DOM element for display.
-  // New map with map options.
+  // New map initiated, with some options, waiting for data updating.
   mapGoogle = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 0.0, lng: 0.0},
     zoom: 17,
@@ -33,8 +31,7 @@ function initMap() {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU, mapTypeIds: ['roadmap', 'hybrid'],
     }
   });
-
-  }
+}
   
 // Event listener (triggers when clicking the input submit button).
 button.on('click', function(event) {
@@ -47,7 +44,7 @@ button.on('click', function(event) {
   answerStory.text('');
   extractWiki.text('');
   linkWikipedia.text('');
-  map2.hide();
+  maps.hide();
   
   $.ajax({
     url: '/_query',
@@ -57,24 +54,23 @@ button.on('click', function(event) {
     success: function(response) {
       textUser.append(response['userText']);
       textUserDiv.show();
-      loader.fadeIn(3500).fadeOut('slow', function() {
+      loader.delay(300).fadeIn(3000).fadeOut('slow', function() {
         answerAddress.append(response['addressAnswer']);
         if (response['globalAddress'] != '') {
           	addressGlobal.append(response['globalAddress'] + '<br><br><span class="toMap" id="notIvory"><a href="#mapPlace">Regarde la jolie carte ci-dessous.</a></span>');
-          // Sending the coordinates of the address to the Google Maps API JavaScript 
-          // to display the right map.
+            // Sending the coordinates of the address to the Google Maps API JavaScript 
+            // to display the right map.
             userPlace = {lat: response['lat'], lng: response['lng']};
-            mapGoogle.setCenter(userPlace);
-          // Add a symbol (circle) as a marker and animation of the marker.
+            mapGoogle.setCenter(userPlace); 
+            // Add a symbol (arrow) as a marker and animation of the marker (drop).
             var marker = new google.maps.Marker({
               position: userPlace,
-            map: mapGoogle,
-            animation: google.maps.Animation.DROP,
-            icon: { 
+              map: mapGoogle,
+              animation: google.maps.Animation.DROP,
+              icon: { 
                 path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
                 scale: 6
               }
-            // icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
             });
             // Add an info window that pop up when the mouse mover over.
             var infoWindow = new google.maps.InfoWindow({
@@ -83,12 +79,14 @@ button.on('click', function(event) {
             marker.addListener('mouseover', function(){
               infoWindow.open(map, marker);
             });
-        	map2.show();
+        	  maps.show();
         }
         address.show();
         answerStory.append(response['storyAnswer']); 
+        // Giving the story from Wikipedia if there is any extract content.
         if (response['wikiExtract'] != '') {
           extractWiki.append(response['wikiExtract']);
+          // Link to the right Wikipedia pageid.
           linkWikipedia.append('<a href="https://fr.wikipedia.org/wiki/?curid=' + response['pageid'] + '">- En savoir plus sur Wikipedia.</a>');
           wikiHistory.show();
         } else {
@@ -96,6 +94,7 @@ button.on('click', function(event) {
             wikiHistory.show();
           }
         }
+        // Cleaning the input from the previous user sentence.
         $('input:text').val('')
       });
     },
