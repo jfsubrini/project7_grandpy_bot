@@ -18,7 +18,7 @@ Program developed by Jean-François Subrini, March 2018.
 
 * You can access the website from your Terminal executing *run.py* and watching it from your *localhost:5000* in your browser.
 
-* You can also and more easily go directly online at [C.Hoo!](https://) website, deployed with *Heroku*.
+* You can also and more easily go directly online at [C.Hoo!](https://c-hoo.herokuapp.com) website, deployed with *Heroku*.
 
 
 ***Enjoy it !***
